@@ -1,0 +1,145 @@
+			<% include ../../layout/head %>
+			<% include ../../layout/global-vendors %>
+				<% include ../../layout/header %>
+					<% include profile-aside %>
+
+								<!--Begin:: App Content-->
+								<div class="kt-grid__item kt-grid__item--fluid kt-app__content">
+									<div class="row">
+										<div class="col-xl-12">
+											<div class="kt-portlet">
+												<div class="kt-portlet__head">
+													<div class="kt-portlet__head-label">
+														<h3 class="kt-portlet__head-title">Personal Information <small>update your personal informaiton</small></h3>
+													</div>
+												</div>
+												<% include ../../../default/alerts %>
+												<form class="kt-form kt-form--label-right" id="changeInformation" enctype="multipart/form-data" action="/admin/customer/profile/<%=data.customer[0].id%>?target=information" method="post">
+													<div class="kt-portlet__body">
+														<div class="kt-section kt-section--first">
+															<div class="kt-section__body">
+																<div class="form-group row">
+																	<label class="col-xl-3 col-lg-3 col-form-label">Avatar</label>
+																	<div class="col-lg-9 col-xl-6">
+																		<div class="kt-avatar kt-avatar--outline kt-avatar--circle" id="kt_apps_user_add_avatar">
+																			<% if(data.customer[0].customerAvatar != "" && data.customer[0].customerAvatar != undefined){ %>
+																			<div class="kt-avatar__holder" style="background-image: url(&quot;/static/images/avatar/<%=data.customer[0].customerAvatar%>&quot;);"></div>
+																			<% }else{ %>
+																			<div class="kt-avatar__holder">
+																				<div class="kt-badge kt-badge--brand kt-badge--xl"><%=data.customer[0].customerName[0].toUpperCase()%></div>
+																			</div>
+																			<% } %>
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="form-control-label col-xl-3 col-lg-3 col-form-label">Name</label>
+																	<div class="col-lg-9 col-xl-9">
+																		<input name="customerName" disabled="disabled" class="form-control" value="<%=data.customer[0].customerName%>" type="text">
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="col-xl-3 col-lg-3 col-form-label">Email</label>
+																	<div class="col-lg-9 col-xl-6">
+																		<div class="input-group">
+																			<div class="input-group-prepend"><span class="input-group-text"><i class="la la-at"></i></span></div>
+																			<input type="text" disabled="disabled" class="form-control" value="<%=data.customer[0].customerMail%>" placeholder="customerMail" aria-describedby="basic-addon1">
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="col-xl-3 col-lg-3 col-form-label">Phone</label>
+																	<div class="col-lg-9 col-xl-6">
+																		<div class="input-group">
+																			<div class="input-group-prepend"><span class="input-group-text"><i class="la la-phone"></i></span></div>
+																			<input name="customerPhone" type="text" class="form-control" value="<%=data.customer[0].customerPhone%>" aria-describedby="basic-addon1">
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="col-xl-3 col-lg-3 col-form-label">Facebook</label>
+																	<div class="col-lg-9 col-xl-6">
+																		<div class="input-group">
+																			<div class="input-group-prepend"><span class="input-group-text"><i class="la la-facebook"></i></span></div>
+																			<input name="customerFacebook" type="text" class="form-control" placeholder="Facebook" value="<%=data.customer[0].customerFacebook%>" aria-describedby="basic-addon1">
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="col-xl-3 col-lg-3 col-form-label">Ship Address 1</label>
+																	<div class="col-lg-9 col-xl-6">
+																		<div class="input-group">
+																			<div class="input-group-prepend"><span class="input-group-text"><i class="la la-home"></i></span></div>
+																			<input name="customerShipAddress1" type="text" class="form-control" value="<%=data.customer[0].customerShipAddress1%>" placeholder="Address" aria-describedby="basic-addon1">
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="col-xl-3 col-lg-3 col-form-label">Ship Address 2</label>
+																	<div class="col-lg-9 col-xl-6">
+																		<div class="input-group">
+																			<div class="input-group-prepend"><span class="input-group-text"><i class="la la-home"></i></span></div>
+																			<input name="customerShipAddress2" type="text" class="form-control" value="<%=data.customer[0].customerShipAddress2%>" placeholder="Address" aria-describedby="basic-addon1">
+																		</div>
+																	</div>
+																</div>
+																<% if(req.user.memberLevel == 1){ %>
+																<div class="form-group row">
+																	<label class="form-control-label col-xl-3 col-lg-3 col-form-label">Level</label>
+																	<div class="col-lg-9 col-xl-9 form-group-sub">
+																		<select name="customerLevel" class="form-control kt-selectpicker" id="customer-level-select" title="Choose category...">
+																			<option value="1">Wholesaler</option>
+																			<option value="2">Retailer</option>
+																			<option value="3">Customer</option>
+																		</select>
+																	</div>
+																</div>
+																<% } %>
+															</div>
+														</div>
+													</div>
+													<div class="kt-portlet__foot">
+														<div class="kt-form__actions">
+															<div class="row">
+																<div class="col-lg-3 col-xl-3">
+																</div>
+																<div class="col-lg-9 col-xl-9">
+																	<button type="Submit" class="btn btn-success">Submit</button>&nbsp;
+																	<button type="reset" class="btn btn-secondary">Cancel</button>
+																</div>
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!--End:: App Content-->
+							</div>
+
+							<!--End::App-->
+						</div>
+
+						<!-- end:: Content -->
+					</div>
+				<% include ../../layout/footer %>
+			<% include ../../layout/footer-script %>
+
+		<!--begin::Page Scripts(used by this page) -->
+		<script>
+		jQuery(document).ready(function() {
+			// Select Picker
+			$('.kt-selectpicker').selectpicker();
+		})
+		jQuery(window).on('load', function(){
+			$('#customer-level-select').val("<%=data.customer[0].customerLevel%>");
+            $('#customer-level-select').selectpicker('refresh');
+		})
+  		</script>
+		<!--end::Page Scripts -->
+	</body>
+
+	<!-- end::Body -->
+</html>

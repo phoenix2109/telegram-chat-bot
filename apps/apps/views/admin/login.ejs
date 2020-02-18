@@ -1,0 +1,203 @@
+	<% include layout/head %>
+	<!--begin::Page Vendors Styles(used by this page) -->
+	<link href="/static/theme/admin/assets/css/demo1/pages/general/login/login-1.css" rel="stylesheet" type="text/css">
+	<!--end::Page Vendors Styles -->
+	<% include layout/global-vendors %>
+	<!-- begin::Body -->
+	<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-aside--enabled kt-aside--fixed kt-page--loading">
+
+		<!-- begin:: Page -->
+		<div class="kt-grid kt-grid--ver kt-grid--root">
+			<div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v1" id="kt_login">
+				<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--desktop kt-grid--ver-desktop kt-grid--hor-tablet-and-mobile">
+
+					<!--begin::Aside-->
+					<div class="kt-grid__item kt-grid__item--order-tablet-and-mobile-2 kt-grid kt-grid--hor kt-login__aside" style="background-image: url(/static/theme/admin/assets/media//bg/bg-2.jpg);">
+						<div class="kt-grid__item">
+							<a href="#" class="kt-login__logo">
+								<img src="/static/theme/admin/assets/media/logos/gup-logo-trans.png">
+							</a>
+						</div>
+						<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver">
+							<div class="kt-grid__item kt-grid__item--middle">
+								<h3 class="kt-login__title">Welcome to GUP Capital!</h3>
+								<h4 class="kt-login__subtitle">This is GUP Capital admin's area</h4>
+							</div>
+						</div>
+						<div class="kt-grid__item">
+							<div class="kt-login__info">
+								<div class="kt-login__copyright">
+									&copy 2019 GUP Capital
+								</div>
+								<div class="kt-login__menu">
+									<a href="#" class="kt-link">Privacy</a>
+									<a href="#" class="kt-link">Legal</a>
+									<a href="#" class="kt-link">Contact</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--begin::Aside-->
+
+					<!--begin::Content-->
+					<div class="kt-grid__item kt-grid__item--fluid  kt-grid__item--order-tablet-and-mobile-1  kt-login__wrapper">
+
+						<!--begin::Head-->
+						<%# <div class="kt-login__head">
+							<span class="kt-login__signup-label">Don't have an account yet?</span>&nbsp;&nbsp;
+							<a href="#" class="kt-link kt-login__signup-link">Sign Up!</a>
+						</div> %>
+
+						<!--end::Head-->
+
+						<!--begin::Body-->
+						<div class="kt-login__body">
+
+							<!--begin::Signin-->
+							<div class="kt-login__form">
+								<div class="kt-login__title">
+									<h3>Sign In</h3>
+								</div>
+								<% if(message != ""){ %>
+								<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert">		
+									<span><%=message%></span>
+								</div>
+								<% } %>
+								<!--begin::Form-->
+								<form class="kt-form" method="post" action="/login/?redirect=<%= req.query.redirect%>" novalidate="novalidate">
+									<div class="form-group">
+										<input class="form-control" type="text" placeholder="Username" name="username" autocomplete="off" autofocus>
+									</div>
+									<div class="form-group">
+										<input class="form-control" type="password" placeholder="Password" name="pass">
+									</div>
+
+									<!--begin::Action-->
+									<div class="kt-login__actions">
+										<a href="#" class="kt-link kt-login__link-forgot">
+											Forgot Password ?
+										</a>
+										<button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary">Sign In</button>
+									</div>
+
+									<!--end::Action-->
+								</form>
+
+								<!--end::Form-->
+
+								<!--begin::Divider-->
+								<div class="kt-login__divider">
+									<div class="kt-divider">
+										<span></span>
+										<span>OR</span>
+										<span></span>
+									</div>
+								</div>
+
+								<!--end::Divider-->
+
+								<!--begin::Options-->
+								<div class="kt-login__options">
+									<a href="#" class="btn btn-primary kt-btn">
+										<i class="fab fa-facebook-f"></i>
+										Facebook
+									</a>
+									<a href="#" class="btn btn-info kt-btn">
+										<i class="fab fa-twitter"></i>
+										Twitter
+									</a>
+									<a href="#" class="btn btn-danger kt-btn">
+										<i class="fab fa-google"></i>
+										Google
+									</a>
+								</div>
+
+								<!--end::Options-->
+							</div>
+
+							<!--end::Signin-->
+						</div>
+
+						<!--end::Body-->
+					</div>
+
+					<!--end::Content-->
+				</div>
+			</div>
+		</div>
+
+		<!-- end:: Page -->
+
+		<% include layout/footer-script %>
+
+		<!--begin::Page Scripts(used by this page) -->
+		<script>
+			"use strict";
+
+			// Class Definition
+			var loginScript = function () {
+
+				var login = $('#kt_login');
+
+				var showErrorMsg = function (form, type, msg) {
+					var alert = $('<div class="kt-alert kt-alert--outline alert alert-' + type + ' alert-dismissible" role="alert">\
+						<span></span>\
+					</div>');
+
+					form.find('.alert').remove();
+					alert.prependTo(form);
+					alert.animateClass('fadeIn animated');
+					KTUtil.animateClass(alert[0], 'fadeIn animated');
+					alert.find('span').html(msg);
+				}
+
+				// Private Functions
+
+				var handleSignInFormSubmit = function () {
+					$('#kt_login_signin_submit').click(function (e) {
+						e.preventDefault();
+						var btn = $(this);
+						var form = $('.kt-form');
+
+						form.validate({
+							rules: {
+								username: {
+									required: true
+								},
+								password: {
+									required: true
+								}
+							}
+						});
+
+						if (!form.valid()) {
+							return;
+						}
+
+						btn.addClass('kt-loader kt-loader--right kt-loader--light').attr('disabled', true);
+
+						form.submit();
+					});
+				}
+
+				// Public Functions
+				return {
+					// public functions
+					init: function () {
+						handleSignInFormSubmit();
+					}
+				};
+			}();
+
+			// Class Initialization
+			jQuery(document).ready(function () {
+				loginScript.init();
+			});
+		</script>
+
+		<!--end::Page Scripts -->
+	</body>
+
+	<!-- end::Body -->
+</html>

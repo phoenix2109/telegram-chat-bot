@@ -1,0 +1,103 @@
+<div class="kt-content  kt-grid__item kt-grid__item--fluid" style="padding-bottom: 0">
+  <div class="kt-portlet kt-portlet--transparent kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile">
+    <!-- begin:: Strategy -->
+    <div class="kt-portlet__body kt-portlet__body--fit">
+      <div class="kt-widget17">
+        <div class="kt-widget17__stats kt-widget17__custom">
+          <div class="kt-widget17__items">
+            <div class="kt-widget17__item">
+              <span class="kt-widget17__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                  height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--primary">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <polygon id="Bound" points="0 0 24 0 24 24 0 24"></polygon>
+                    <path
+                      d="M12.9336061,16.072447 L19.36,10.9564761 L19.5181585,10.8312381 C20.1676248,10.3169571 20.2772143,9.3735535 19.7629333,8.72408713 C19.6917232,8.63415859 19.6104327,8.55269514 19.5206557,8.48129411 L12.9336854,3.24257445 C12.3871201,2.80788259 11.6128799,2.80788259 11.0663146,3.24257445 L4.47482784,8.48488609 C3.82645598,9.00054628 3.71887192,9.94418071 4.23453211,10.5925526 C4.30500305,10.6811601 4.38527899,10.7615046 4.47382636,10.8320511 L4.63,10.9564761 L11.0659024,16.0730648 C11.6126744,16.5077525 12.3871218,16.5074963 12.9336061,16.072447 Z"
+                      id="Shape" fill="#000000" fill-rule="nonzero"></path>
+                    <path
+                      d="M11.0563554,18.6706981 L5.33593024,14.122919 C4.94553994,13.8125559 4.37746707,13.8774308 4.06710397,14.2678211 C4.06471678,14.2708238 4.06234874,14.2738418 4.06,14.2768747 L4.06,14.2768747 C3.75257288,14.6738539 3.82516916,15.244888 4.22214834,15.5523151 C4.22358765,15.5534297 4.2250303,15.55454 4.22647627,15.555646 L11.0872776,20.8031356 C11.6250734,21.2144692 12.371757,21.2145375 12.909628,20.8033023 L19.7677785,15.559828 C20.1693192,15.2528257 20.2459576,14.6784381 19.9389553,14.2768974 C19.9376429,14.2751809 19.9363245,14.2734691 19.935,14.2717619 L19.935,14.2717619 C19.6266937,13.8743807 19.0546209,13.8021712 18.6572397,14.1104775 C18.654352,14.112718 18.6514778,14.1149757 18.6486172,14.1172508 L12.9235044,18.6705218 C12.377022,19.1051477 11.6029199,19.1052208 11.0563554,18.6706981 Z"
+                      id="Path" fill="#000000" opacity="0.3"></path>
+                  </g>
+                </svg>
+              </span>
+              <span class="kt-widget17__subtitle">
+                Total <%=data.signal.signalName.includes('Signal') ? 'Signal' : data.signal.signalName.toUpperCase()%>
+              </span>
+              <span class="kt-widget17__desc">
+                <%=data.listSignal.length || 0%> Signals
+              </span>
+            </div>
+            <div class="kt-widget17__item">
+              <span class="kt-widget17__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                  height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--success">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <rect x="0" y="0" width="24" height="24" />
+                    <path
+                      d="M16.0322024,5.68722152 L5.75790403,15.945742 C5.12139076,16.5812778 5.12059836,17.6124773 5.75613416,18.2489906 C5.75642891,18.2492858 5.75672377,18.2495809 5.75701875,18.2498759 L5.75701875,18.2498759 C6.39304347,18.8859006 7.42424328,18.8859006 8.060268,18.2498759 C8.06056298,18.2495809 8.06085784,18.2492858 8.0611526,18.2489906 L18.3196731,7.9746922 C18.9505124,7.34288268 18.9501191,6.31942463 18.3187946,5.68810005 L18.3187946,5.68810005 C17.68747,5.05677547 16.6640119,5.05638225 16.0322024,5.68722152 Z"
+                      fill="#000000" fill-rule="nonzero" />
+                    <path
+                      d="M9.85714286,6.92857143 C9.85714286,8.54730513 8.5469533,9.85714286 6.93006028,9.85714286 C5.31316726,9.85714286 4,8.54730513 4,6.92857143 C4,5.30983773 5.31316726,4 6.93006028,4 C8.5469533,4 9.85714286,5.30983773 9.85714286,6.92857143 Z M20,17.0714286 C20,18.6901623 18.6898104,20 17.0729174,20 C15.4560244,20 14.1428571,18.6901623 14.1428571,17.0714286 C14.1428571,15.4497247 15.4560244,14.1428571 17.0729174,14.1428571 C18.6898104,14.1428571 20,15.4497247 20,17.0714286 Z"
+                      fill="#000000" opacity="0.3" />
+                  </g>
+                </svg>
+              </span>
+              <span class="kt-widget17__subtitle">
+                Win Rate
+              </span>
+              <span class="kt-widget17__desc">
+                <%=(data.signal.signalWin*100/data.signal.signalCompleted).toFixed(2) || 0%>%
+              </span>
+            </div>
+          </div>
+          <div class="kt-widget17__items">
+            <div class="kt-widget17__item">
+              <span class="kt-widget17__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                  height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--warning">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <rect x="0" y="0" width="24" height="24" />
+                    <circle fill="#000000" opacity="0.3" cx="20.5" cy="12.5" r="1.5" />
+                    <rect fill="#000000" opacity="0.3"
+                      transform="translate(12.000000, 6.500000) rotate(-15.000000) translate(-12.000000, -6.500000) "
+                      x="3" y="3" width="18" height="7" rx="1" />
+                    <path
+                      d="M22,9.33681558 C21.5453723,9.12084552 21.0367986,9 20.5,9 C18.5670034,9 17,10.5670034 17,12.5 C17,14.4329966 18.5670034,16 20.5,16 C21.0367986,16 21.5453723,15.8791545 22,15.6631844 L22,18 C22,19.1045695 21.1045695,20 20,20 L4,20 C2.8954305,20 2,19.1045695 2,18 L2,6 C2,4.8954305 2.8954305,4 4,4 L20,4 C21.1045695,4 22,4.8954305 22,6 L22,9.33681558 Z"
+                      fill="#000000" />
+                  </g>
+                </svg>
+              </span>
+              <span class="kt-widget17__subtitle">
+                Profit
+              </span>
+              <span class="kt-widget17__desc">
+                <%=data.signal.signalProfit.reduce((x,y) => parseInt(x) + parseInt(y)) || 0%> Pips
+              </span>
+            </div>
+            <div class="kt-widget17__item">
+              <span class="kt-widget17__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                  height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--danger">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <rect x="0" y="0" width="24" height="24" />
+                    <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+                    <path
+                      d="M16.7689447,7.81768175 C17.1457787,7.41393107 17.7785676,7.39211077 18.1823183,7.76894473 C18.5860689,8.1457787 18.6078892,8.77856757 18.2310553,9.18231825 L11.2310553,16.6823183 C10.8654446,17.0740439 10.2560456,17.107974 9.84920863,16.7592566 L6.34920863,13.7592566 C5.92988278,13.3998345 5.88132125,12.7685345 6.2407434,12.3492086 C6.60016555,11.9298828 7.23146553,11.8813212 7.65079137,12.2407434 L10.4229928,14.616916 L16.7689447,7.81768175 Z"
+                      fill="#000000" fill-rule="nonzero" />
+                  </g>
+                </svg>
+              </span>
+              <span class="kt-widget17__subtitle">
+                Completed
+              </span>
+              <span class="kt-widget17__desc">
+                <%=data.signal.signalCompleted || 0%> Signals
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:: Strategy -->
+  </div>
+</div>

@@ -1,0 +1,179 @@
+			<% include ../../layout/head %>
+			<% include ../../layout/global-vendors %>
+				<% include ../../layout/header %>
+					<% if( req.user.level >= data.member[0].level && req.user.level > 1 && req.user.username != data.member[0].username ) { %>
+						<div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+							<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+								<div class="row">
+									<div class="col-12">
+										<div class="alert alert-danger fade show" role="alert">
+											<div class="alert-icon"><i class="flaticon-warning"></i></div>
+											<div class="alert-text">Oops! You are not allowed to access this page</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					<% }else{ %>
+					<% include profile-aside %>
+
+								<!--Begin:: App Content-->
+								<div class="kt-grid__item kt-grid__item--fluid kt-app__content">
+									<div class="row">
+										<div class="col-xl-12">
+											<div class="kt-portlet">
+												<div class="kt-portlet__head">
+													<div class="kt-portlet__head-label">
+														<h3 class="kt-portlet__head-title">Personal Information <small>update your personal informaiton</small></h3>
+													</div>
+												</div>
+												<% include ../../../default/alerts %>
+												<form class="kt-form kt-form--label-right" id="changeInformation" enctype="multipart/form-data" action="/admin/member/profile/<%=data.member[0]._id%>?target=information" method="post">
+													<div class="kt-portlet__body">
+														<div class="kt-section kt-section--first">
+															<div class="kt-section__body">
+																<div class="form-group row">
+																	<label class="col-xl-3 col-lg-3 col-form-label">Avatar</label>
+																	<div class="col-lg-9 col-xl-6">
+																		<div class="kt-avatar kt-avatar--outline kt-avatar--circle" id="kt_apps_user_add_avatar">
+																			<% if(data.member[0].avatar !== "" && data.member[0].avatar !== undefined && data.member[0].avatar !== null){ %>
+																			<div class="kt-avatar__holder">
+																				<image src="/static/images/avatar/<%=data.member[0].avatar%>" alt="avatar" />
+																			</div>
+																			<% }else{ %>
+                                        <div class="kt-avatar__holder">
+                                          <image src="/static/images/avatar/noimage.png" alt="avatar" />
+                                        </div>
+																			<% } %>
+																			<label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change avatar">
+																				<i class="fa fa-pen"></i>
+																				<input id="avatar" type="file" name="memberAvatar" accept=".png, .jpg, .jpeg">
+																			</label>
+																			<span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
+																				<i class="fa fa-times"></i>
+																			</span>
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="form-control-label col-xl-3 col-lg-3 col-form-label">Name</label>
+																	<div class="col-lg-9 col-xl-6">
+																		<input name="memberName" class="form-control" value="<%=data.member[0].name%>" type="text">
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="col-xl-3 col-lg-3 col-form-label">Email</label>
+																	<div class="col-lg-9 col-xl-6">
+																		<div class="input-group">
+																			<div class="input-group-prepend"><span class="input-group-text"><i class="la la-at"></i></span></div>
+																			<input type="text" disabled="disabled" class="form-control" value="<%=data.member[0].email%>" placeholder="email" aria-describedby="basic-addon1">
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="col-xl-3 col-lg-3 col-form-label">Phone</label>
+																	<div class="col-lg-9 col-xl-6">
+																		<div class="input-group">
+																			<div class="input-group-prepend"><span class="input-group-text"><i class="la la-phone"></i></span></div>
+																			<input name="memberPhone" type="text" class="form-control" value="<%=data.member[0].info === undefined ? "" : data.member[0].info.phone%>" aria-describedby="basic-addon1">
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="col-xl-3 col-lg-3 col-form-label">Facebook</label>
+																	<div class="col-lg-9 col-xl-6">
+																		<div class="input-group">
+																			<div class="input-group-prepend"><span class="input-group-text"><i class="la la-facebook"></i></span></div>
+																			<input name="memberFacebook" type="text" class="form-control" placeholder="Facebook" value="<%=data.member[0].info === undefined ? "" : data.member[0].info.facebook%>" aria-describedby="basic-addon1">
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="col-xl-3 col-lg-3 col-form-label">Address</label>
+																	<div class="col-lg-9 col-xl-6">
+																		<div class="input-group">
+																			<div class="input-group-prepend"><span class="input-group-text"><i class="la la-home"></i></span></div>
+																			<input name="memberAddress" type="text" class="form-control" value="<%=data.member[0].info === undefined ? "" : data.member[0].info.address%>" placeholder="Address" aria-describedby="basic-addon1">
+																		</div>
+																	</div>
+																</div>
+																<% if(req.user.level == 1){ %>
+																<div class="form-group form-group-last row">
+																	<label class="form-control-label col-xl-3 col-lg-3 col-form-label">Level</label>
+																	<div class="col-lg-9 col-xl-6 form-group-sub">
+																		<select name="memberLevel" class="form-control kt-selectpicker" id="member-level-select" title="Choose category...">
+																			<option value="1" data-content="<span class='kt-font-bold kt-font-danger'>Admin</span>">Admin</option>
+                                      <option value="2" data-content="<span class='kt-font-bold kt-font-primary'>Moderator</span>">Moderator</option>
+                                      <option value="3" data-content="<span class='kt-font-bold kt-font-success'>Member</span>">Member</option>
+																		</select>
+																	</div>
+																</div>
+																<% } %>
+															</div>
+														</div>
+													</div>
+													<div class="kt-portlet__foot">
+														<div class="kt-form__actions">
+															<div class="row">
+																<div class="col-lg-3 col-xl-3">
+																</div>
+																<div class="col-lg-9 col-xl-9">
+																	<button type="submit" class="btn btn-success">Submit</button>&nbsp;
+																	<button type="reset" value="Reset" class="btn btn-secondary">Cancel</button>
+																</div>
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!--End:: App Content-->
+							</div>
+
+							<!--End::App-->
+						</div>
+
+						<!-- end:: Content -->
+					</div>
+					<% } %>
+				<% include ../../layout/footer %>
+			<% include ../../layout/footer-script %>
+
+		<!--begin::Page Scripts(used by this page) -->
+		<script>
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				
+				reader.onload = function(e) {
+					$('.kt-avatar__holder img').attr('src', e.target.result);
+				}
+				
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$("#avatar").change(function() {
+			readURL(this);
+		});
+
+		jQuery(document).ready(function() {
+			// Select Picker
+			$('.kt-selectpicker').selectpicker();
+			$('[type="reset"]').on('click', function(){
+				window.location.reload();
+			})
+		})
+		jQuery(window).on('load', function(){
+			$('#member-level-select').val("<%=data.member[0].level%>");
+      $('#member-level-select').selectpicker('refresh');
+		})
+  		</script>
+		<!--end::Page Scripts -->
+	</body>
+
+	<!-- end::Body -->
+</html>

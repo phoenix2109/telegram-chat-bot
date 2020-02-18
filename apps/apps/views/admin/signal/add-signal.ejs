@@ -1,0 +1,251 @@
+<% include ../layout/head %>
+<% include ../layout/global-vendors %>
+<% include ../layout/header %>
+<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+
+  <!-- begin:: Content -->
+  <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- begin:: Portlet -->
+        <div class="kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile" id="kt_page_portlet">
+          <div class="kt-portlet__head kt-portlet__head--lg">
+            <div class="kt-portlet__head-label">
+              <span class="kt-portlet__head-icon">
+                <i class="kt-font-brand flaticon2-line-chart"></i>
+              </span>
+              <h3 class="kt-portlet__head-title">
+                Add Signal
+              </h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+              <a href="../signal" class="btn btn-clean kt-margin-r-10">
+                <i class="la la-arrow-left"></i>
+                <span class="kt-hidden-mobile">Cancel</span>
+              </a>
+              <div class="btn-group">
+                <button id="add-signal" type="submit" class="btn btn-brand">
+                  <i class="la la-check"></i>
+                  <span class="kt-hidden-mobile">Save</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="kt-portlet__body">
+            <form id="addSignalForm" action="/admin/signal/add-signal" class="kt-form kt-form--label-right"
+              method="post">
+              <!--begin: Add Signal -->
+              <div class="form-group form-group-last kt-hide">
+                <div class="alert alert-danger" role="alert" id="addSignalAlert">
+                  <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                  <div class="alert-text">
+                    Oh snap! Change a few things up and try submitting again.
+                  </div>
+                  <div class="alert-close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true"><i class="la la-close"></i></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="kt-section__body">
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Name</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <input name="signalName" class="form-control" type="text" placeholder="Signal Name">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Type</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12 form-group-sub">
+                    <select name="signalType" class="form-control kt-selectpicker" id="signalType"
+                      title="Choose type...">
+                      <option value="buy" data-content="<span class='kt-font-bold kt-font-success'>Buy</span>">Buy</option>
+                      <option value="buylimit" data-content="<span class='kt-font-bold kt-font-success'>Buy Limit</span>">Buy Limit</option>
+                      <option value="buystop" data-content="<span class='kt-font-bold kt-font-success'>Buy Stop</span>">Buy Stop</option>
+                      <option value="sell" data-content="<span class='kt-font-bold kt-font-danger'>Sell</span>">Sell</option>
+                      <option value="selllimit" data-content="<span class='kt-font-bold kt-font-danger'>Sell Limit</span>">Sell Limit</option>
+                      <option value="sellstop" data-content="<span class='kt-font-bold kt-font-danger'>Sell Stop</span>">Sell Stop</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Entry</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <input name="signalEntry" class="form-control" type="text" placeholder="Entry">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Stop Loss</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <input name="signalSL" class="form-control" type="text" placeholder="Stop Loss">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Take Profit 1</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <input name="signalTP1" class="form-control" type="text" placeholder="Take Profit 1">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Take Profit 2</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <input name="signalTP2" class="form-control" type="text" placeholder="Take Profit 2">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Take Profit 3</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <input name="signalTP3" class="form-control" type="text" placeholder="Take Profit 3">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Status</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12 form-group-sub">
+                    <select name="signalStatus" class="form-control kt-selectpicker" id="signalStatus"
+                      title="Choose status...">
+                      <option value="1" data-content="<span class='kt-font-bold kt-font-danger'>Inactive</span>">
+                        Inactive</option>
+                      <option value="2" data-content="<span class='kt-font-bold kt-font-primary'>Done</span>">Done
+                      </option>
+                      <option value="3" data-content="<span class='kt-font-bold kt-font-success'>Active</span>">Active
+                      </option>
+                      <option value="4" data-content="<span class='kt-font-bold kt-font-warning'>Waiting</span>">Waiting
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Progress</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12 form-group-sub">
+                    <select name="signalProgress" class="form-control kt-selectpicker" id="signalProgress" title="Choose progress...">
+                      <option value="0" data-content="<span class='kt-font-bold kt-font-danger'>SL</span>">SL</option>
+                      <option value="1" data-content="<span class='kt-font-bold kt-font-primary'>None</span>">None</option>
+                      <option value="2" data-content="<span class='kt-font-bold kt-font-success'>TP1</span>">TP1</option>
+                      <option value="3" data-content="<span class='kt-font-bold kt-font-success'>TP2</span>">TP2</option>
+                      <option value="4" data-content="<span class='kt-font-bold kt-font-success'>TP3</span>">TP3</option>
+                      <option value="5" data-content="<span class='kt-font-bold kt-font-warning'>Close</span>">Close</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Result</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12 form-group-sub">
+                    <select name="signalResult" class="form-control kt-selectpicker" id="signalResult"
+                      title="Choose result...">
+                      <option value="1" data-content="<span class='kt-font-bold kt-font-danger'>Lose</span>">Lose
+                      </option>
+                      <option value="2" data-content="<span class='kt-font-bold kt-font-primary'>Undefined</span>">
+                        Undefined</option>
+                      <option value="3" data-content="<span class='kt-font-bold kt-font-success'>Win</span>">Win
+                      </option>
+                      <option value="4" data-content="<span class='kt-font-bold kt-font-warning'>Draw</span>">Draw
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Note</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <textarea name="signalNote" class="form-control" type="text" rows="3" placeholder="Note"></textarea>
+                  </div>
+                </div>
+                <div class="form-group form-group-last row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Source</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12 form-group-sub">
+                    <select name="signalSource" class="form-control kt-selectpicker" id="signalSource" title="Choose source...">
+                      <option value="">None</option>
+                      <% for (x in data.listSource) { %>
+                        <option value="<%=data.listSource[x].tag%>"><%=data.listSource[x].name%></option>
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!--end: Add Signal -->
+            </form>
+          </div>
+        </div>
+        <!-- end:: Portlet -->
+      </div>
+    </div>
+  </div>
+
+  <!-- end:: Content -->
+</div>
+
+<% include ../layout/footer %>
+<% include ../layout/footer-script %>
+<script>
+  jQuery(document).ready(function () {
+    var $ = jQuery;
+    // Select Picker
+    $('.kt-selectpicker').selectpicker();
+
+    // Validation
+    $("#addSignalForm").validate({
+      // define validation rules
+      rules: {
+        signalName: {
+          required: true
+        },
+        signalStatus: {
+          required: true
+        },
+        signalProgress: {
+          required: true
+        },
+        signalEntry: {
+          required: true
+        },
+        signalSL: {
+          required: true
+        },
+        signalTP1: {
+          required: true
+        }
+      },
+
+      //display error alert on form submit  
+      invalidHandler: function (event, validator) {
+        swal.fire({
+          "title": "",
+          "text": "There are some errors in your submission. Please correct them.",
+          "type": "error",
+          "onClose": function (e) {
+            console.log('on close event fired!');
+          }
+        });
+
+        event.preventDefault();
+      },
+
+      submitHandler: function (form) {
+        form.submit()
+      }
+    });
+  });
+
+  $('#add-signal').on('click', function () {
+    $("#addSignalForm").submit();
+  })
+</script>
+<script>
+  jQuery(document).ready(function () {
+    var $ = jQuery;
+
+    $('#signalStatus').val("1");
+    $('#signalStatus').selectpicker('refresh');
+
+    $('#signalProgress').val("1");
+    $('#signalProgress').selectpicker('refresh');
+
+    $('#signalResult').val("2");
+    $('#signalResult').selectpicker('refresh');
+  })
+</script>
+</body>
+
+<!-- end::Body -->
+
+</html>

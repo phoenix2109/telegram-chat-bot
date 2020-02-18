@@ -1,0 +1,17 @@
+<% if ( req.session.flash != undefined && req.session.flash.error != undefined ) { %>
+    <% req.flash('error').forEach(function(err){ %>
+   <div class="alert alert-danger" role="alert">
+        <div class="alert-icon"><i class="flaticon2-cross"></i></div>
+        <div class="alert-text"><%=err%></div>
+    </div>
+    <% }) %>
+<% } %>
+
+<% if ( req.session.flash != undefined && req.session.flash.success != undefined ) { %>
+    <% req.flash('success').forEach(function(success){ %>
+    <div class="alert alert-success" role="alert">
+        <div class="alert-icon"><i class="flaticon2-check-mark"></i></div>
+        <div class="alert-text"><%=success%></div>
+    </div>
+    <% }) %>
+<% } %>

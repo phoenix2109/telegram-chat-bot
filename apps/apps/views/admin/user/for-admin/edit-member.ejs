@@ -1,0 +1,189 @@
+    <% include ../../layout/head %>
+    <% include ../../layout/global-vendors %>
+    <% include ../../layout/header %>
+    <% if (req.user.level > 1) { %>
+      <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+        <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="alert alert-danger fade show" role="alert">
+                <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                <div class="alert-text">Oops! You are not allowed to access this page</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } else { %>
+    <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+
+      <!-- begin:: Content -->
+      <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+        <div class="row">
+          <div class="col-lg-12">
+            <!-- begin:: Portlet -->
+            <div class="kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile" id="kt_page_portlet">
+              <div class="kt-portlet__head kt-portlet__head--lg">
+                <div class="kt-portlet__head-label">
+                  <span class="kt-portlet__head-icon">
+                    <i class="kt-font-brand flaticon2-line-chart"></i>
+                  </span>
+                  <h3 class="kt-portlet__head-title">
+                    Edit Member
+                  </h3>
+                </div>
+                <div class="kt-portlet__head-toolbar">
+                  <a href="/admin/member" class="btn btn-clean kt-margin-r-10">
+                    <i class="la la-arrow-left"></i>
+                    <span class="kt-hidden-mobile">Cancel</span>
+                  </a>
+                  <div class="btn-group">
+                    <button id="edit-member" type="submit" class="btn btn-brand">
+                      <i class="la la-check"></i>
+                      <span class="kt-hidden-mobile">Save</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="kt-portlet__body">
+                <form id="editMemberForm" action="/admin/member/edit-member/<%=data.member[0]._id%>"
+                  class="kt-form kt-form--label-right" method="post">
+                  <!--begin: Edit Member -->
+                  <div class="form-group form-group-last kt-hide">
+                    <div class="alert alert-danger" role="alert" id="addMemberAlert">
+                      <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                      <div class="alert-text">
+                        Oh snap! Change a few things up and try submitting again.
+                      </div>
+                      <div class="alert-close">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true"><i class="la la-close"></i></span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="kt-section__body">
+                    <div class="form-group row">
+                      <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Name</label>
+                      <div class="col-lg-6 col-md-6 col-sm-12">
+                        <input name="memberName" class="form-control" value="<%=data.member[0].name%>" type="text">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Email</label>
+                      <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="input-group">
+                          <div class="input-group-prepend"><span class="input-group-text"><i class="la la-at"></i></span>
+                          </div>
+                          <input type="text" disabled="disabled" class="form-control" value="<%=data.member[0].email%>"
+                            placeholder="memberMail" aria-describedby="basic-addon1">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-xl-3 col-lg-3 col-form-label">Phone</label>
+                      <div class="col-lg-9 col-xl-6">
+                        <div class="input-group">
+                          <div class="input-group-prepend"><span class="input-group-text"><i class="la la-phone"></i></span></div>
+                          <input name="memberPhone" type="text" class="form-control" value="<%=data.member[0].info === undefined ? "" : data.member[0].info.phone%>" aria-describedby="basic-addon1">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-xl-3 col-lg-3 col-form-label">Facebook</label>
+                      <div class="col-lg-9 col-xl-6">
+                        <div class="input-group">
+                          <div class="input-group-prepend"><span class="input-group-text"><i class="la la-facebook"></i></span></div>
+                          <input name="memberFacebook" type="text" class="form-control" placeholder="Facebook" value="<%=data.member[0].info === undefined ? "" : data.member[0].info.facebook%>" aria-describedby="basic-addon1">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-xl-3 col-lg-3 col-form-label">Address</label>
+                      <div class="col-lg-9 col-xl-6">
+                        <div class="input-group">
+                          <div class="input-group-prepend"><span class="input-group-text"><i class="la la-home"></i></span></div>
+                          <input name="memberAddress" type="text" class="form-control" value="<%=data.member[0].info === undefined ? "" : data.member[0].info.address%>" placeholder="Address" aria-describedby="basic-addon1">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Type</label>
+                      <div class="col-lg-6 col-md-6 col-sm-12 form-group-sub">
+                        <select name="memberLevel" class="form-control kt-selectpicker" id="member-level-select"
+                          title="Choose category...">
+                          <option value="1" data-content="<span class='kt-font-bold kt-font-danger'>Admin</span>">Admin
+                          </option>
+                          <option value="2" data-content="<span class='kt-font-bold kt-font-primary'>Moderator</span>">Moderator
+                          </option>
+                          <option value="3" data-content="<span class='kt-font-bold kt-font-success'>Member</span>">Member
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <!--end: Edit Member -->
+                </form>
+              </div>
+            </div>
+            <!-- end:: Portlet -->
+          </div>
+        </div>
+      </div>
+
+      <!-- end:: Content -->
+    </div>
+    <% } %>
+
+    <% include ../../layout/footer %>
+    <% include ../../layout/footer-script %>
+    <script>
+      jQuery(document).ready(function () {
+        // Select Picker
+        $('.kt-selectpicker').selectpicker();
+
+        $('#edit-member').on('click', function (e) {
+          e.preventDefault();
+          var form = $("#editMemberForm");
+
+          form.validate({
+            rules: {
+              memberName: {
+                required: true
+              }
+            }
+          });
+
+          if (!form.valid()) {
+            return;
+          }
+
+          form.ajaxSubmit({
+            url: '',
+            success: function (response, status, xhr, $form) {
+              swal.fire({
+                "title": "",
+                "text": "Edit Member Successfully!",
+                "type": "success"
+              });
+              setTimeout(function () {
+                window.location.pathname = "/admin/member"
+              }, 1000)
+            }
+          });
+        });
+      });
+
+
+    </script>
+    <script>
+      jQuery(document).ready(function () {
+        $('#member-level-select').val("<%=data.member[0].level%>");
+        $('#member-level-select').selectpicker('refresh');
+      })
+    </script>
+  </body>
+
+  <!-- end::Body -->
+
+</html>

@@ -1,0 +1,271 @@
+    <% include ../layout/head %>
+			<% include ../layout/global-vendors %>
+				<% include ../layout/header %>
+					<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+
+						<!-- begin:: Content -->
+						<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+							<div class="row">
+								<div class="col-lg-12">	
+										<!-- begin:: Portlet -->
+									<div class="kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile" id="kt_page_portlet">
+										<div class="kt-portlet__head kt-portlet__head--lg">
+											<div class="kt-portlet__head-label">
+												<span class="kt-portlet__head-icon">
+													<i class="kt-font-brand flaticon2-line-chart"></i>
+												</span>
+												<h3 class="kt-portlet__head-title">
+													Add Order
+												</h3>
+											</div>
+											<div class="kt-portlet__head-toolbar">
+												<a href="/admin/order" class="btn btn-clean kt-margin-r-10">
+													<i class="la la-arrow-left"></i>
+													<span class="kt-hidden-mobile">Cancel</span>
+												</a>
+												<div class="btn-group">
+													<button id="edit-order" type="submit" class="btn btn-brand">
+														<i class="la la-check"></i> 
+														<span class="kt-hidden-mobile">Save</span>
+													</button>
+												</div>
+											</div>
+										</div>
+										<div class="kt-portlet__body">
+											<% include ../../default/alerts %>
+											<form id="editOrderForm" action="/admin/order/edit-order" class="kt-form kt-form--label-right" method="post">
+												<!--begin: Add Order -->
+												<div class="form-group form-group-last kt-hide">
+													<div class="alert alert-danger" role="alert" id="editOrderAlert">
+														<div class="alert-icon"><i class="flaticon-warning"></i></div>
+															<div class="alert-text">
+																Oh snap! Change a few things up and try submitting again.
+														</div>
+														<div class="alert-close">
+															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+																<span aria-hidden="true"><i class="la la-close"></i></span>
+															</button>
+														</div>
+													</div>
+												</div>
+												<div class="kt-section__body">
+													<div class="form-group row">
+														<label class="form-control-label col-xl-3 col-lg-3 col-form-label">Customer *</label>
+														<div class="col-lg-6 col-md-6 col-sm-12">
+															<select class="form-control kt-select2" id="customerProfile" name="customerProfile">
+																<% for (x in data.customerProfile) { %>
+																<option value="<%=data.customerProfile[x].customerId%>"><%=data.customerProfile[x].customerAvatar%>,<%=data.customerProfile[x].customerName%></option>
+																<% } %>
+															</select>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="form-control-label col-xl-3 col-lg-3 col-form-label">Product *</label>
+														<div class="col-lg-6 col-md-6 col-sm-12">
+															<select class="form-control kt-select2" id="productOrder" name="productOrder">
+																<% for (x in data.productOrder) { %>
+																<option value="<%=data.productOrder[x].productId%>"><%=data.productOrder[x].productImage.split`,`[0]%>,<%=data.productOrder[x].productName%>,<%=data.productOrder[x].productPrice%></option>
+																<% } %>
+															</select>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="form-control-label col-xl-3 col-lg-3 col-form-label">Link</label>
+														<div class="col-lg-6 col-md-6 col-sm-12">
+															<input value="<%=data.order[0].orderLink%>" name="orderLink" class="form-control" type="text" placeholder="Phoenix">
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="form-control-label col-xl-3 col-lg-3 col-form-label">Status *</label>
+														<div class="col-lg-6 col-md-6 col-sm-12 form-group-sub">
+															<select name="orderStatus" class="form-control kt-selectpicker" id="orderStatus" title="Choose status...">
+																<option value="1" data-content="<span class='kt-font-bold kt-font-danger'>Cancel</span>">Cancel</option>
+																<option value="2" data-content="<span class='kt-font-bold kt-font-primary'>Pending</span>">Pending</option>
+																<option value="3" data-content="<span class='kt-font-bold kt-font-success'>Completed</span>">Completed</option>
+															</select>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="form-control-label col-xl-3 col-lg-3 col-form-label">Product Status *</label>
+														<div class="col-lg-6 col-md-6 col-sm-12 form-group-sub">
+															<select name="orderProductStatus" class="form-control kt-selectpicker" id="orderProductStatus" title="Choose product status...">
+																<option value="1" data-content="<span class='kt-font-bold kt-font-danger'>Out of Stock</span>">Out of Stock</option>
+																<option value="2" data-content="<span class='kt-font-bold kt-font-primary'>Order</span>">Order</option>
+																<option value="3" data-content="<span class='kt-font-bold kt-font-success'>Avaiable</span>">Avaiable</option>
+															</select>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="form-control-label col-xl-3 col-lg-3 col-form-label">Ship *</label>
+														<div class="col-lg-6 col-md-6 col-sm-12 form-group-sub">
+															<select name="orderShipStatus" class="form-control kt-selectpicker" id="orderShipStatus" title="Choose ship status...">
+																<option value="1" data-content="<span class='kt-font-bold kt-font-danger'>Unshipped</span>">Unshipped</option>
+																<option value="2" data-content="<span class='kt-font-bold kt-font-primary'>Shipping</span>">Shipping</option>
+																<option value="3" data-content="<span class='kt-font-bold kt-font-success'>Delivered</span>">Delivered</option>
+															</select>
+														</div>
+													</div>
+												</div>
+												<!--end: Add Order -->
+											</form>
+										</div>
+									</div>
+										<!-- end:: Portlet -->
+								</div>
+							</div>
+						</div>
+
+						<!-- end:: Content -->
+					</div>
+
+			<% include ../layout/footer %>
+			<% include ../layout/footer-script %>
+		<script>
+			function formatProductState (state) {
+				if (!state.id) {
+					return state.text;
+				}
+				var stateImage = state.text.split`,`[0];
+				var stateName = state.text.split`,`[1];
+				var statePrice = state.text.split`,`[2];
+				var rowName = '<span class="kt-user-card-v2__name">' + stateName + '</span>';
+				var rowPrice = '<span class="kt-user-card-v2__name">' + statePrice + '</span>';
+				var rowImage = '<img src="/static/images/product/'+ stateImage +'" alt="avatar">';
+				var $state = $(
+								'<div class="kt-user-card-v2">\
+									<div class="kt-user-card-v2__pic">\
+										'+rowImage+'\
+									</div>\
+									<div class="kt-user-card-v2__details">\
+										'+rowName+'\
+										'+rowPrice+'\
+									</div>\
+								</div>'
+							)
+				return $state;
+			};
+
+			function formatCustomerState (state) {
+				if (!state.id) {
+					return state.text;
+				}
+				var stateAvatar = state.text.split`,`[0];
+				var stateName = state.text.split`,`[1];
+				
+
+				var stateNo = stateName[0].charCodeAt() % 7;
+				var states = [
+					'success',
+					'brand',
+					'danger',
+					'success',
+					'warning',
+					'primary',
+					'info'
+				];
+				var rowName = '<span class="kt-user-card-v2__name">' + stateName + '</span>';
+				var rowAvatar;
+				if(stateAvatar == "" || stateAvatar == undefined || stateAvatar == null){
+					rowAvatar = '<div class="kt-badge kt-badge--xl kt-badge--' + states[stateNo] + '">' + stateName[0] + '</div>'
+				}else{
+					rowAvatar = '<img src="/static/images/avatar/'+ stateAvatar +'" alt="avatar">'
+				}
+				var $state = $(
+								'<div class="kt-user-card-v2">\
+									<div class="kt-user-card-v2__pic">\
+										'+rowAvatar+'\
+									</div>\
+									<div class="kt-user-card-v2__details">\
+										'+rowName+'\
+									</div>\
+								</div>'
+							)
+				return $state;
+			};
+
+			var KTSelect2 = {
+				init: function() {
+					$("#customerProfile").select2({
+						placeholder: "Select a customer",
+						templateResult: formatCustomerState,
+						templateSelection: formatCustomerState
+					})
+
+					$("#productOrder").select2({
+						placeholder: "Select a product",
+						templateResult: formatProductState,
+						templateSelection: formatProductState
+					})
+				}
+			};
+
+			jQuery(document).ready(function() {
+				KTSelect2.init()
+				// Select Picker
+				$('.kt-selectpicker').selectpicker();
+				
+				
+
+				$('#edit-order').on('click', function(e){
+					e.preventDefault();
+					var form = $("#editOrderForm");
+
+					form.validate({
+						rules: {
+							customerProfile: {
+								required: true
+							},
+							productOrder: {
+								required: true
+							},
+							orderStatus: {
+								required: true
+							},
+							orderProductStatus: {
+								required: true
+							},
+							orderShipStatus: {
+								required: true
+							}
+						}
+					});
+					
+					if(!form.valid()){
+						return
+					}else{
+						form.ajaxSubmit({
+							url: '',
+							success: function(response, status, xhr, $form) {
+								swal.fire({
+									"title": "", 
+									"text": "Edit Order Successfully!", 
+									"type": "success"
+								});
+								setTimeout(function(){
+									window.location.pathname = "/admin/order"
+								},1000)
+							}
+						});
+					}
+				});
+			});
+
+			jQuery(window).on('load', function(){
+				var $ = jQuery;
+				$('#orderStatus').val("<%=data.order[0].orderStatus%>");
+				$('#orderStatus').selectpicker('refresh');
+
+				$('#orderProductStatus').val("<%=data.order[0].orderProductStatus%>");
+				$('#orderProductStatus').selectpicker('refresh');
+
+				$('#orderShipStatus').val("<%=data.order[0].orderShipStatus%>");
+				$('#orderShipStatus').selectpicker('refresh');
+
+				$('#customerProfile').val("<%=data.order[0].customerId%>").trigger('change');
+				$('#productOrder').val("<%=data.order[0].productId%>").trigger('change');
+			})
+		</script>
+	</body>
+
+	<!-- end::Body -->
+</html>

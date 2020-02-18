@@ -1,0 +1,613 @@
+<% include ../layout/head %>
+<% include ../layout/global-vendors %>
+<% include ../layout/header %>
+<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+  <!-- begin:: Content Head -->
+  <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-subheader__main">
+      <h3 class="kt-subheader__title">
+        Signal
+      </h3>
+      <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+      <div class="kt-subheader__group" id="kt_subheader_search">
+        <span class="kt-subheader__desc" id="kt_subheader_total">
+          <%=data.listSignal.length%> Total </span>
+        <form class="kt-margin-l-20" id="kt_subheader_search_form">
+          <div class="kt-input-icon kt-input-icon--right kt-subheader__search">
+            <input type="text" class="form-control" placeholder="Search..." id="generalSearch">
+            <span class="kt-input-icon__icon kt-input-icon__icon--right">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                  height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <rect id="bound" x="0" y="0" width="24" height="24" />
+                    <path
+                      d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
+                      id="Path-2" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                    <path
+                      d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
+                      id="Path" fill="#000000" fill-rule="nonzero" />
+                  </g>
+                </svg>
+              </span>
+            </span>
+          </div>
+        </form>
+      </div>
+      <div class="kt-subheader__group kt-hidden" id="kt_subheader_group_actions">
+        <div class="kt-subheader__desc"><span id="kt_subheader_group_selected_rows"></span> Selected:</div>
+        <div class="btn-toolbar kt-margin-l-20">
+          <div class="dropdown" id="kt_subheader_group_actions_status_change">
+            <button type="button" class="btn btn-label-brand btn-bold btn-sm dropdown-toggle" data-toggle="dropdown">
+              Update Status
+            </button>
+            <div class="dropdown-menu">
+              <ul class="kt-nav">
+                <li class="kt-nav__section kt-nav__section--first">
+                  <span class="kt-nav__section-text">Change status to:</span>
+                </li>
+                <li class="kt-nav__item">
+                  <a href="#" class="kt-nav__link" data-toggle="status-change" data-status="1">
+                    <span class="kt-nav__link-text"><span
+                        class="kt-badge kt-badge--unified-danger kt-badge--inline kt-badge--bold">Cancel</span></span>
+                  </a>
+                </li>
+                <li class="kt-nav__item">
+                  <a href="#" class="kt-nav__link" data-toggle="status-change" data-status="2">
+                    <span class="kt-nav__link-text"><span
+                        class="kt-badge kt-badge--unified-primary kt-badge--inline kt-badge--bold">Pending</span></span>
+                  </a>
+                </li>
+                <li class="kt-nav__item">
+                  <a href="#" class="kt-nav__link" data-toggle="status-change" data-status="3">
+                    <span class="kt-nav__link-text"><span
+                        class="kt-badge kt-badge--unified-success kt-badge--inline kt-badge--bold">Completed</span></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <button class="btn btn-label-success btn-bold btn-sm btn-icon-h" id="kt_subheader_group_actions_fetch"
+            data-toggle="modal" data-target="#kt_datatable_records_fetch_modal">
+            Fetch Selected
+          </button>
+          <button class="btn btn-label-danger btn-bold btn-sm btn-icon-h" id="kt_subheader_group_actions_delete_all">
+            Delete All
+          </button>
+        </div>
+      </div>
+    </div>
+    <%if(req.user.level < 3){%>
+    <div class="kt-subheader__toolbar">
+      <a href="#" class="">
+      </a>
+      <a href="/admin/signal/add-signal" class="btn btn-label-brand btn-bold">
+        Add Signal </a>
+    </div>
+    <%}%>
+            </div>
+            
+            <% include ../../default/strategy %>
+
+    <!-- begin:: Content -->
+    <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+      <div class="kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile" id="kt_page_portlet">
+        <div class="kt-portlet__body">
+          <% include ../../default/alerts %>
+          <div class="kt-form kt-form--label-right kt-margin-t-20 kt-margin-b-10">
+            <div class="row align-items-center">
+              <div class="col-xl-12 order-2 order-xl-1">
+                <div class="row align-items-center">
+                  <div class="col-md-2 kt-margin-b-20-tablet-and-mobile">
+                    <div class="kt-form__group kt-form__group--inline">
+                      <div class="kt-form__label">
+                        <label>Type:</label>
+                      </div>
+                      <div class="kt-form__control">
+                        <select class="form-control bootstrap-select" id="kt_form_type">
+                          <option value="">All</option>
+                          <option value="sell" data-content="<span class='kt-font-bold kt-font-danger'>Sell</span>">Sell
+                          </option>
+                          <option value="selllimit"
+                            data-content="<span class='kt-font-bold kt-font-danger'>Sell Limit</span>">Sell Limit
+                          </option>
+                          <option value="sellstop"
+                            data-content="<span class='kt-font-bold kt-font-danger'>Sell Stop</span>">Sell Stop</option>
+                          <option value="buy" data-content="<span class='kt-font-bold kt-font-success'>Buy</span>">Buy
+                          </option>
+                          <option value="buylimit"
+                            data-content="<span class='kt-font-bold kt-font-success'>Buy Limit</span>">Buy Limit
+                          </option>
+                          <option value="buystop"
+                            data-content="<span class='kt-font-bold kt-font-success'>Buy Stop</span>">Buy Stop</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2 kt-margin-b-20-tablet-and-mobile">
+                    <div class="kt-form__group kt-form__group--inline">
+                      <div class="kt-form__label">
+                        <label>Status:</label>
+                      </div>
+                      <div class="kt-form__control">
+                        <select class="form-control bootstrap-select" id="kt_form_status">
+                          <option value="">All</option>
+                          <option value="1" data-content="<span class='kt-font-bold kt-font-danger'>Inactive</span>">
+                            Inactive</option>
+                          <option value="2" data-content="<span class='kt-font-bold kt-font-primary'>Done</span>">Done
+                          </option>
+                          <option value="3" data-content="<span class='kt-font-bold kt-font-success'>Active</span>">
+                            Active</option>
+                          <option value="4" data-content="<span class='kt-font-bold kt-font-warning'>Waiting</span>">
+                            Waiting</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2 kt-margin-b-20-tablet-and-mobile">
+                    <div class="kt-form__group kt-form__group--inline">
+                      <div class="kt-form__label">
+                        <label>Result:</label>
+                      </div>
+                      <div class="kt-form__control">
+                        <select class="form-control bootstrap-select" id="kt_form_result">
+                          <option value="">All</option>
+                          <option value="1" data-content="<span class='kt-font-bold kt-font-danger'>Lose</span>">Lose
+                          </option>
+                          <option value="2" data-content="<span class='kt-font-bold kt-font-primary'>Undefined</span>">
+                            Undefined</option>
+                          <option value="3" data-content="<span class='kt-font-bold kt-font-success'>Win</span>">Win
+                          </option>
+                          <option value="4" data-content="<span class='kt-font-bold kt-font-warning'>Draw</span>">Draw
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 kt-margin-b-20-tablet-and-mobile">
+                    <div class="kt-form__group kt-form__group--inline">
+                      <div class="kt-form__label">
+                        <label>Date Range:</label>
+                      </div>
+                      <div class="kt-form__control">
+                        <div class="input-group pull-right" id="kt_daterangepicker">
+                          <input type="text" class="form-control" value="2019/01/01 - 2019/12/31" readonly="" placeholder="Select date range">
+                          <div class="input-group-append">
+                            <span class="input-group-text"><i class="la la-calendar-check-o"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--end: Search Form -->
+        </div>
+        <div class="kt-portlet__body kt-portlet__body--fit">
+
+          <!--begin: Datatable -->
+          <table class="kt-datatable" id="signal_table" width="100%">
+            <thead>
+              <tr>
+                <th title="OrderID">#</th>
+                <th title="Name">Name</th>
+                <th title="Type">Type</th>
+                <th title="Entry">Entry</th>
+                <th title="SL">SL</th>
+                <th title="TP1">TP1</th>
+                <th title="TP2">TP2</th>
+                <th title="TP3">TP3</th>
+                <th title="Close">Close</th>
+                <th title="Pips">Pips</th>
+                <th title="Profit">Profit</th>
+                <th title="Note">Note</th>
+                <th title="Source">Source</th>
+                <th title="Duration">Duration</th>
+                <th title="Status">Status</th>
+                <th title="Progress">Progress</th>
+                <th title="Result">Result</th>
+                <th title="CreatedBy">CreatedBy</th>
+                <th title="Actions">Actions</th>
+                <th title="UploadDate">UploadDate</th>
+                <th title="EndDate">EndDate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(x in data.listSignal){ %>
+              <tr>
+                <td><%=parseInt(x)+1%></td>
+                <td><%=data.listSignal[x].name%></td>
+                <td><%=data.listSignal[x].value.type === null ? "" : data.listSignal[x].value.type.toUpperCase()%></td>
+                <td><%=data.listSignal[x].value.entry%></td>
+                <td><%=data.listSignal[x].value.sl%></td>
+                <td><%=data.listSignal[x].value.tp1%></td>
+                <td><%=data.listSignal[x].value.tp2%></td>
+                <td><%=data.listSignal[x].value.tp3%></td>
+                <td><%=data.listSignal[x].value.close || 0%></td>
+                <td><%=data.signal.signalProfit[x] || 0%></td>
+                <td>
+                  <%=data.resultProfits(data.signal.signalProfit[x] || 0, data.listSignal[x].sourceInfo[0] === undefined ? 0 : data.listSignal[x].sourceInfo[0].lot)%>
+                </td> <!-- Profit -->
+                <td>
+                  <%=data.listSignal[x].value.note === undefined || data.listSignal[x].value.note === '' ? "No Note" : data.listSignal[x].value.note%>
+                </td>
+                <td>
+                  <%=data.listSignal[x].sourceInfo[0] === undefined ? "None" : [data.listSignal[x].sourceInfo[0].tag, data.listSignal[x].sourceInfo[0].name]%>
+                </td>
+                <td align="center">
+                  <%=data.listSignal[x].value.timeend === undefined || data.listSignal[x].value.timeend === '-' || data.listSignal[x].value.timeend === '' ? '-' : data.diffTime(data.listSignal[x].value.time, data.listSignal[x].value.timeend)%>
+                </td> <!-- Duration -->
+                <td align="right"><%=data.listSignal[x].value.status%></td>
+                <td><%=data.listSignal[x].value.progress%></td>
+                <td align="right"><%=data.listSignal[x].value.res%></td>
+                <td>
+                  <%=[data.listSignal[x].userInfo.username, data.listSignal[x].userInfo.level, data.listSignal[x].userInfo._id, data.listSignal[x].userInfo.avatar === undefined || data.listSignal[x].userInfo.avatar === '' ? '' : data.listSignal[x].userInfo.avatar]%>
+                </td>
+                <td><%=data.listSignal[x]._id%></td>
+                <td><%=moment(data.listSignal[x].value.time).format('YYYY-MM-DD HH:mm')%></td>
+                <td>
+                  <%=data.listSignal[x].value.timeend === undefined || data.listSignal[x].value.timeend === '' || data.listSignal[x].value.timeend === '-' ? '-' : moment(data.listSignal[x].value.timeend).format('YYYY-MM-DD HH:mm')%>
+                </td> <!-- End Date -->
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+
+          <!--end: Datatable -->
+        </div>
+      </div>
+    </div>
+
+    <!-- end:: Content -->
+  </div>
+
+  <% include ../layout/footer %>
+  <% include ../layout/footer-script %>
+
+  <!--begin::Page Scripts(used by this page) -->
+  <script>
+
+    "use strict";
+    // Private functions
+    var signalIndex = function () {
+
+      var datatable = $('.kt-datatable').KTDatatable({
+        data: {
+          saveState: { cookie: false },
+        },
+        search: {
+          input: $('#generalSearch'),
+          delay: 400,
+        },
+        columns: [
+          {
+            field: '#',
+            title: 'OrderID',
+            type: 'number',
+            sortable: 'asc',
+            width: 30,
+          }, {
+            field: 'Name',
+            title: 'Name',
+            width: 60,
+            autoHide: false,
+            template: function (row) {
+              return `<a href="/admin/signal?signal=${row.Name.toLowerCase()}" class="kt-user-card-v2__name">${row.Name}</a>`
+            }
+          }, {
+            field: 'Type',
+            title: 'Type',
+            width: 60,
+            template: function (row) {
+              // console.log(row)
+              var status = {
+                'BUY': { 'title': 'Buy', 'state': 'success' },
+                'BUYLIMIT': { 'title': 'Buy Limit', 'state': 'success' },
+                'BUYSTOP': { 'title': 'Buy Stop', 'state': 'success' },
+                'SELL': { 'title': 'Sell', 'state': 'danger' },
+                'SELLLIMIT': { 'title': 'Sell Limit', 'state': 'danger' },
+                'SELLSTOP': { 'title': 'Sell Stop', 'state': 'danger' }
+              };
+              return `<span class='kt-font-bold kt-font-${status[row.Type].state}'>${status[row.Type].title}</span>`
+            }
+          }, {
+            field: 'Entry',
+            title: 'Entry',
+            type: 'number',
+            width: 60,
+            sortable: false
+          }, {
+            field: 'SL',
+            title: 'SL',
+            type: 'number',
+            width: 60,
+            sortable: false
+          }, {
+            field: 'TP1',
+            title: 'TP1',
+            type: 'number',
+            width: 60,
+            sortable: false
+          }, {
+            field: 'TP2',
+            title: 'TP2',
+            type: 'number',
+            width: 60,
+            sortable: false
+          }, {
+            field: 'TP3',
+            title: 'TP3',
+            type: 'number',
+            width: 60,
+            sortable: false
+          }, {
+            field: 'Close',
+            title: 'Close',
+            type: 'number',
+            width: 60,
+            sortable: false
+          }, {
+            field: 'Status',
+            title: 'Status',
+            autoHide: true,
+            width: 60,
+            // callback function support for column rendering
+            template: function (row) {
+              var status = {
+                1: { 'title': 'Inactive', 'state': 'danger' },
+                2: { 'title': 'Done', 'state': 'primary' },
+                3: { 'title': 'Active', 'state': 'success' },
+                4: { 'title': 'Waiting', 'state': 'warning' }
+              };
+              return '<span class="kt-badge kt-badge--' + status[row.Status].state + ' kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-' + status[row.Status].state + '">' + status[row.Status].title + '</span>';
+            }
+          }, {
+            field: 'Progress',
+            title: 'Progress',
+            width: 60,
+            autoHide: true,
+            sortable: false,
+            template: function (row) {
+              var status = {
+                0: { 'title': 'SL', 'state': 'danger' },
+                1: { 'title': 'None', 'state': 'primary' },
+                2: { 'title': 'TP1', 'state': 'success' },
+                3: { 'title': 'TP2', 'state': 'success' },
+                4: { 'title': 'TP3', 'state': 'success' },
+                5: { 'title': 'Close', 'state': 'warning' }
+              };
+              return '<span class="kt-badge kt-badge--' + status[row.Progress].state + ' kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-' + status[row.Progress].state + '">' + status[row.Progress].title + '</span>';
+            }
+          }, {
+            field: 'Result',
+            title: 'Result',
+            width: 60,
+            // callback function support for column rendering
+            template: function (row) {
+              var status = {
+                1: { 'title': 'Lose', 'state': 'danger' },
+                2: { 'title': 'Undefined', 'state': 'primary' },
+                3: { 'title': 'Win', 'state': 'success' },
+                4: { 'title': 'Draw', 'state': 'warning' },
+              };
+              return '<span class="kt-badge kt-badge--' + status[row.Result].state + ' kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-' + status[row.Result].state + '">' + status[row.Result].title + '</span>';
+            }
+          }, {
+            field: 'Pips',
+            title: 'Pips',
+            type: 'number',
+            autoHide: false,
+            width: 60
+          }, {
+            field: 'Profit',
+            title: 'Profit',
+            type: 'number',
+            autoHide: false,
+            width: 60
+          }, {
+            field: 'Note',
+            title: 'Note',
+            width: 90,
+            sortable: false,
+            template: function (row) {
+              return '<pre>' + row.Note + '</pre>'
+            }
+          }, {
+            field: 'Source',
+            title: 'Source',
+            width: 60,
+            autoHide: false,
+            template: function (row) {
+              console.log(row.Source)
+              if (row.Source !== 'None') {
+                const tag = row.Source.split`,`[0].toLowerCase()
+                const name = row.Source.split`,`[1]
+                return `<a href="/admin/signal?source=${tag}" class="kt-user-card-v2__name">${name}</a>`
+              } else {
+                return `<span>None</span>`
+              }
+            }
+          }, {
+            field: 'CreatedBy',
+            title: 'CreatedBy',
+            width: 150,
+            autoHide: true,
+            template: function (row) {
+              var stateNo = row.CreatedBy[0].toUpperCase().charCodeAt() % 7;
+              var data = row.CreatedBy.split`,`
+              var states = [
+                'success',
+                'brand',
+                'danger',
+                'success',
+                'warning',
+                'primary',
+                'info'
+              ];
+              var desc = {
+                1: { 'title': 'Admin' },
+                2: { 'title': 'Moderator' },
+                3: { 'title': 'Member' },
+              };
+
+              var state = states[stateNo];
+              var row_avatar
+              var row_name = '<a href="/admin/member/profile/' + data[2] + '" class="kt-user-card-v2__name">' + data[0] + '</a>';
+              if (data[3] === "" || data[3] === undefined) {
+                row_avatar = '<div class="kt-badge kt-badge--xl kt-badge--' + state + '">' + data[0][0].toUpperCase() + '</div>'
+              } else {
+                row_avatar = '<img src="/static/images/avatar/' + data[3] + '" alt="avatar">'
+              }
+
+              return '<div class="kt-user-card-v2">\
+                    <div class="kt-user-card-v2__pic">\
+                      '+ row_avatar + '\
+                    </div>\
+                    <div class="kt-user-card-v2__details">\
+                      '+ row_name + '\
+                      <span class="kt-user-card-v2__desc">'+ desc[data[1]].title + '</span>\
+                    </div>\
+                  </div>';
+            }
+          }, {
+            field: 'Actions',
+            title: 'Actions',
+            sortable: false,
+            width: 80,
+            autoHide: false,
+            template: function (row) {
+              var row_delete = "";
+              if ("<%= req.user.level%>" === "1") {
+                row_delete = '<a href="/admin/signal/delete-signal/' + row['Actions'] + '" class="btn btn-sm btn-clean btn-icon btn-icon-md button-delete-signal" title="Delete"><i class="la la-trash"></i></a>'
+              }
+              return '<a href="/admin/signal/edit-signal/' + row['Actions'] + '" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Edit details">\
+                        <i class="la la-edit"></i>\
+                      </a>\
+                      '+ row_delete + '';
+            }
+          }, {
+            field: 'UploadDate',
+            title: 'UploadDate',
+            type: 'datetime',
+            autoHide: true
+          }, {
+            field: 'EndDate',
+            title: 'EndDate',
+            type: 'datetime',
+            autoHide: true
+          }, {
+            field: 'Duration',
+            title: 'Duration',
+            width: 80,
+            type: 'datetime',
+            autoHide: false
+          },
+        ],
+      });
+
+      $('#kt_form_type').on('change', function () {
+        datatable.search($(this).val().toLowerCase(), 'Type');
+      });
+
+      $('#kt_form_status').on('change', function () {
+        datatable.search($(this).val().toLowerCase(), 'Status');
+      });
+
+      $('#kt_form_result').on('change', function () {
+        datatable.search($(this).val().toLowerCase(), 'Result');
+      });
+
+      $('#kt_form_type, #kt_form_status, #kt_form_result').selectpicker();
+
+    };
+
+    var KTBootstrapDaterangepicker = function () {
+
+      // Private functions
+      var demos = function () {
+        $('#kt_daterangepicker').daterangepicker({
+          buttonClasses: ' btn',
+          applyClass: 'btn-primary',
+          cancelClass: 'btn-secondary',
+
+          startDate: moment('<%=data.date.startDate%>'),
+          endDate: moment('<%=data.date.endDate%>'),
+          
+          ranges: {
+            'Default': [moment().startOf('year'), moment().endOf('year')],
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          }
+        }, function(start, end, label) {
+          if(start !== "" && start !== undefined && end !== "" && end !== undefined) {
+            $('#kt_daterangepicker .form-control').val(start.format('YYYY-MM-DD') + ' / ' + end.format('YYYY-MM-DD'));
+            setTimeout(function(){
+              window.location.href = window.location.pathname + '?' + 'start-date=' + start.format('YYYY-MM-DD') + '&' + 'end-date=' + end.format('YYYY-MM-DD')
+            }, 500)
+          }
+        });
+      }
+
+      return {
+        // public functions
+        init: function () {
+          demos();
+        }
+      };
+    }();
+
+    jQuery(document).ready(function () {
+      signalIndex();
+      KTBootstrapDaterangepicker.init();
+    });
+  </script>
+  <script>
+    jQuery(window).on('load', function () {
+      var $ = jQuery;
+      var params = window.location.search.substring(1)
+
+      if(params !== "" && params !== undefined && params.includes('start-date') && params.includes('end-date')){
+        var startDate = params.split`&`[0].split`=`[1]
+        var endDate = params.split`&`[1].split`=`[1]
+        $('#kt_daterangepicker .form-control').val(startDate + ' / ' + endDate);
+      }
+
+      $('.button-delete-signal').click(function (e) {
+        var _href = $(this).attr('href');
+        console.log(_href);
+        e.preventDefault();
+        swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, delete it!'
+        }).then(function (result) {
+          if (result.value) {
+            swal.fire(
+              'Deleted!',
+              'Your signal has been deleted.',
+              'success'
+            )
+            setTimeout(function () {
+              window.location.pathname = _href;
+            }, 800)
+          }
+
+        });
+      });
+    });
+  </script>
+  <!--end::Page Scripts -->
+  </body>
+
+  <!-- end::Body -->
+
+  </html>

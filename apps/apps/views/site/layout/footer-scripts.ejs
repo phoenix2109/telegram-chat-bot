@@ -1,0 +1,97 @@
+<script>
+  var KTAppOptions = {
+    "colors": {
+      "state": {
+        "brand": "#5d78ff",
+        "dark": "#282a3c",
+        "light": "#ffffff",
+        "primary": "#588af0",
+        "success": "#28c23e",
+        "info": "#36a3f7",
+        "warning": "#ffb822",
+        "danger": "#fd3995"
+      },
+      "base": {
+        "label": [
+          "#c5cbe3",
+          "#a1a8c3",
+          "#3d4465",
+          "#3e4466"
+        ],
+        "shape": [
+          "#f0f3ff",
+          "#d9dffa",
+          "#afb4d4",
+          "#646c9a"
+        ]
+      }
+    }
+  };
+</script>
+<script src="/static/theme/site/assets/js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="/static/theme/site/assets/js/plugins.bundle.js"></script>
+<script src="/static/theme/site/assets/js/scripts.bundle.js"></script>
+<script src="/static/theme/site/assets/js/lazysizes.min.js"></script>
+<script src="/static/theme/site/assets/js/jquery.viewport.min.js"></script>
+<script>
+  // Lazysizes Config
+  window.lazySizesConfig = window.lazySizesConfig || {};
+  window.lazySizesConfig.requireJs = function (modules, cb) {
+    window.require(modules, cb);
+  };
+
+  // Lazysizes Background Config
+  document.addEventListener('lazybeforeunveil', function (e) {
+    let bg = e.target.getAttribute('data-bg');
+    if (bg) {
+      e.target.style.backgroundImage = 'url(' + bg + ')';
+    }
+  });
+  // Onepage Scroll Handler
+  function onepageScrollHandler() {
+    let wW = $(window).width()
+    if (wW > 992 && $(".one-page").length > 0) {
+      let onepageSection = $("#wrapper > div:in-viewport(101)").attr("id");
+      "main" == onepageSection && (onepageSection = $('#main div[id^="section-"]:in-viewport(101)').attr("id")),
+        $(".menu .menu--item").removeClass("active"),
+        $(".menu .menu--item a[href='#" + onepageSection + "']").parent().addClass("active")
+    }
+  }
+  $(document).ready(function () {
+    let wW = $(window).width()
+
+    // One page scroll function
+    $(window).scroll(function () {
+      let scrollTimeOut;
+      scrollTimeOut && (clearTimeout(scrollTimeOut),
+        scrollTimeOut = null),
+        scrollTimeOut = setTimeout(onepageScrollHandler, 100)
+    });
+    $(window).trigger('scroll');
+
+    // Trigger Click One Page
+    let menuHeight = $('#navigation').outerHeight()
+    if ($('.one-page').length) {
+      $('.menu .menu--item a').on('click', function (event) {
+        event.preventDefault()
+        let _href = $(this).attr('href')
+        $(this).parent().siblings().removeClass('active')
+        $(this).parent().addClass('active')
+        if (wW < 993) {
+          $('.menu.menu--mobile').slideToggle()
+        }
+        $('html, body').animate({
+          scrollTop: $(_href).offset().top - menuHeight
+        }, 500)
+      })
+    }
+  })
+
+  $(window).on('load', function () {
+    $('body').addClass('js-loaded');
+    setTimeout(function () {
+      $('body').removeClass('is-loading');
+    }, 1500)
+  })
+</script>

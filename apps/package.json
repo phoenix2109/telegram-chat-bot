@@ -1,0 +1,82 @@
+{
+  "name": "telegraf",
+  "version": "3.32.0",
+  "description": "📡 Modern Telegram Bot Framework",
+  "license": "MIT",
+  "author": "Vitaly Domnikov <oss@vitaly.codes>",
+  "homepage": "https://github.com/telegraf/telegraf#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/telegraf/telegraf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/telegraf/telegraf/issues"
+  },
+  "main": "telegraf.js",
+  "files": [
+    "core/**/*.js",
+    "scenes/**/*.js",
+    "typings/*.d.ts",
+    "*.js"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "test": "ava test/*",
+    "precommit": "npm run lint && npm run typecheck && npm test",
+    "typecheck": "tsc"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "types": "./typings/index.d.ts",
+  "dependencies": {
+    "@types/node": "^12.0.4",
+    "concat-stream": "^2.0.0",
+    "debug": "^4.0.1",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "fixer-api": "^2.0.1",
+    "forex-quotes": "^4.0.1",
+    "moment": "^2.24.0",
+    "node-fetch": "^2.2.0",
+    "nodemon": "^1.19.1",
+    "pageres": "^5.1.0",
+    "sandwich-stream": "^2.0.1",
+    "telegram-typings": "^3.6.0",
+    "yarn": "^1.17.3",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
+    "dropzone": "^5.5.1",
+    "express-session": "^1.15.6",
+    "express-slash": "^2.0.1",
+    "flash": "^1.1.0",
+    "formidable": "^1.2.1",
+    "javascript-time-ago": "^2.0.1",
+    "lodash": "^4.17.11",
+    "moment-duration-format": "^2.3.2",
+    "multer": "^1.4.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "ava": "^2.2.0",
+    "eslint": "^6.1.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-ava": "^7.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "husky": "^3.0.2",
+    "typescript": "^3.0.1"
+  },
+  "keywords": [
+    "telegraf",
+    "telegram",
+    "telegram bot api",
+    "bot",
+    "botapi",
+    "bot framework"
+  ]
+}

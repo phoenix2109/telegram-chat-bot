@@ -1,0 +1,191 @@
+<% include ../../layout/head %>
+<% include ../../layout/global-vendors %>
+<% include ../../layout/header %>
+<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+
+  <!-- begin:: Content -->
+  <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- begin:: Portlet -->
+        <div class="kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile" id="kt_page_portlet">
+          <div class="kt-portlet__head kt-portlet__head--lg">
+            <div class="kt-portlet__head-label">
+              <span class="kt-portlet__head-icon">
+                <i class="kt-font-brand flaticon2-line-chart"></i>
+              </span>
+              <h3 class="kt-portlet__head-title">
+                Add Customer
+              </h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+              <a href="/admin/customer" class="btn btn-clean kt-margin-r-10">
+                <i class="la la-arrow-left"></i>
+                <span class="kt-hidden-mobile">Cancel</span>
+              </a>
+              <div class="btn-group">
+                <button id="add-customer" type="submit" class="btn btn-brand">
+                  <i class="la la-check"></i>
+                  <span class="kt-hidden-mobile">Save</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="kt-portlet__body">
+            <% include ../../../default/alerts %>
+            <form id="addCustomerForm" action="/admin/customer/add-customer" class="kt-form kt-form--label-right"
+              method="post">
+              <!--begin: Add Customer -->
+              <div class="form-group form-group-last kt-hide">
+                <div class="alert alert-danger" role="alert" id="addCustomerAlert">
+                  <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                  <div class="alert-text">
+                    Oh snap! Change a few things up and try submitting again.
+                  </div>
+                  <div class="alert-close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true"><i class="la la-close"></i></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="kt-section__body">
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Account</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <input name="account" class="form-control" placeholder="Customer Account" type="text">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Name</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <input name="name" class="form-control" placeholder="Customer Name" type="text">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label">Email</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-group">
+                      <div class="input-group-prepend"><span class="input-group-text"><i class="la la-at"></i></span>
+                      </div>
+                      <input name="email" type="text" class="form-control" placeholder="email@example.com"
+                        aria-describedby="basic-addon1">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label">Phone</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-group">
+                      <div class="input-group-prepend"><span class="input-group-text"><i class="la la-phone"></i></span>
+                      </div>
+                      <input name="phone" type="text" class="form-control" aria-describedby="basic-addon1"
+                        placeholder="+84123456789">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label">Deposit</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-group">
+                      <div class="input-group-prepend"><span class="input-group-text"><i class="la la-dollar"></i></span>
+                      </div>
+                      <input name="deposit" type="text" class="form-control" aria-describedby="basic-addon1"
+                        placeholder="Deposit">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Status</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12 form-group-sub">
+                    <select name="status" class="form-control kt-selectpicker" id="customer-status-select"
+                      title="Choose status...">
+                      <option value="0" data-content="<span class='kt-font-bold kt-font-primary'>Inactive</span>">
+                        Inactive</option>
+                      <option value="1" data-content="<span class='kt-font-bold kt-font-success'>Active</span>">
+                        Active</option>
+                      <option value="2" data-content="<span class='kt-font-bold kt-font-danger'>Error</span>">
+                        Error</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Note</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <textarea name="note" class="form-control" type="text" rows="3"
+                      value="" placeholder="Note"></textarea>
+                  </div>
+                </div>
+              </div>
+              <!--end: Add Customer -->
+            </form>
+          </div>
+        </div>
+        <!-- end:: Portlet -->
+      </div>
+    </div>
+  </div>
+
+  <!-- end:: Content -->
+</div>
+
+<% include ../../layout/footer %>
+<% include ../../layout/footer-script %>
+<script>
+  jQuery(document).ready(function () {
+    // Select Picker
+    $('.kt-selectpicker').selectpicker();
+
+    $('#add-customer').on('click', function (e) {
+      e.preventDefault();
+      var form = $("#addCustomerForm");
+
+      form.validate({
+        rules: {
+          account: {
+            required: true
+          },
+          name: {
+            required: true
+          },
+          email: {
+            required: true,
+            email: true
+          },
+          phone: {
+            required: true,
+            minlength: 8
+          },
+          status: {
+            required: true
+          }
+        }
+      });
+
+      if (!form.valid()) {
+        return;
+      }
+
+      form.ajaxSubmit({
+        url: '',
+        success: function (response, status, xhr, $form) {
+          swal.fire({
+            "title": "",
+            "text": "Add New Customer Successfully!",
+            "type": "success"
+          });
+          setTimeout(function () {
+            window.location.pathname = "/admin/customer"
+          }, 1000)
+        }
+      });
+    });
+  });
+
+
+</script>
+</body>
+
+<!-- end::Body -->
+
+</html>

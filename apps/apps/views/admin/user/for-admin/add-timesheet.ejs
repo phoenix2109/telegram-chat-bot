@@ -1,0 +1,204 @@
+<% include ../../layout/head %>
+<% include ../../layout/global-vendors %>
+<% include ../../layout/header %>
+<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+
+  <!-- begin:: Content -->
+  <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- begin:: Portlet -->
+        <div class="kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile" id="kt_page_portlet">
+          <div class="kt-portlet__head kt-portlet__head--lg">
+            <div class="kt-portlet__head-label">
+              <span class="kt-portlet__head-icon">
+                <i class="kt-font-brand flaticon2-line-chart"></i>
+              </span>
+              <h3 class="kt-portlet__head-title">
+                Edit Timesheet
+              </h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+              <a href="/admin/timesheet" class="btn btn-clean kt-margin-r-10">
+                <i class="la la-arrow-left"></i>
+                <span class="kt-hidden-mobile">Cancel</span>
+              </a>
+              <div class="btn-group">
+                <button id="add-timesheet" type="submit" class="btn btn-brand">
+                  <i class="la la-check"></i>
+                  <span class="kt-hidden-mobile">Save</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="kt-portlet__body">
+            <form id="addTimesheetForm" action="/admin/timesheet/add-timesheet"
+              class="kt-form kt-form--label-right" method="post">
+              <!--begin: Edit Timesheet -->
+              <div class="form-group form-group-last kt-hide">
+                <div class="alert alert-danger" role="alert" id="addTimesheetAlert">
+                  <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                  <div class="alert-text">
+                    Oh snap! Change a few things up and try submitting again.
+                  </div>
+                  <div class="alert-close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true"><i class="la la-close"></i></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="kt-section__body">
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Member *</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <select class="form-control kt-select2" id="memberProfile" name="memberProfile">
+                      <% for (x in data.memberProfile) { %>
+                      <option value="<%=data.memberProfile[x].memberId%>">
+                        <%=data.memberProfile[x].memberAvatar%>,<%=data.memberProfile[x].memberName%>
+                      </option>
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Check In</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-group date">
+                      <input type="text" class="form-control" readonly placeholder="Select date & time" value="" id="checkIn" name="checkIn" />
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="form-control-label col-xl-3 col-lg-3 col-form-label">Check Out</label>
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-group date">
+                      <input type="text" class="form-control" readonly placeholder="Select date & time" value="" id="checkOut" name="checkOut" />
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--end: Edit Timesheet -->
+            </form>
+          </div>
+        </div>
+        <!-- end:: Portlet -->
+      </div>
+    </div>
+  </div>
+
+  <!-- end:: Content -->
+</div>
+
+<% include ../../layout/footer %>
+<% include ../../layout/footer-script %>
+
+<script>
+  function formatMemberState(state) {
+    if (!state.id) {
+      return state.text;
+    }
+    var stateAvatar = state.text.split`,`[0].trim();
+    var stateName = state.text.split`,`[1];
+
+
+    var stateNo = stateName[0].charCodeAt() % 7;
+    var states = [
+      'success',
+      'brand',
+      'danger',
+      'success',
+      'warning',
+      'primary',
+      'info'
+    ];
+    var rowName = '<span class="kt-user-card-v2__name">' + stateName + '</span>';
+    var rowAvatar;
+    if (stateAvatar == "" || stateAvatar == undefined || stateAvatar == null) {
+      rowAvatar = '<div class="kt-badge kt-badge--xl kt-badge--' + states[stateNo] + '">' + stateName[0] + '</div>'
+    } else {
+      rowAvatar = '<img src="/static/images/avatar/' + stateAvatar + '" alt="avatar">'
+    }
+    var $state = $(
+            '<div class="kt-user-card-v2">\
+              <div class="kt-user-card-v2__pic">\
+                '+ rowAvatar + '\
+              </div>\
+              <div class="kt-user-card-v2__details">\
+                '+ rowName + '\
+              </div>\
+            </div>'
+    )
+    return $state;
+  };
+  var KTSelect2 = {
+    init: function () {
+      $("#memberProfile").select2({
+        placeholder: "Select a member",
+        templateResult: formatMemberState,
+        templateSelection: formatMemberState
+      })
+    }
+  };
+
+  var initDateTimePicker = {
+    init: function () {
+      $("#checkIn, #checkOut").datetimepicker({
+        todayHighlight: true,
+        autoclose: true,
+        todayBtn: true,
+        pickerPosition: "bottom-left",
+        format: "dd/mm/yyyy hh:ii",
+        endDate: new Date()
+      })
+    }
+  };
+
+  jQuery(document).ready(function () {
+    initDateTimePicker.init();
+    KTSelect2.init();
+
+    $('#add-timesheet').on('click', function (e) {
+      e.preventDefault();
+      var form = $("#addTimesheetForm");
+
+      form.validate({
+        rules: {
+          timesheetName: {
+            required: true
+          }
+        }
+      });
+
+      if (!form.valid()) {
+        return;
+      }
+
+      form.ajaxSubmit({
+        url: '',
+        success: function (response, status, xhr, $form) {
+          swal.fire({
+            "title": "",
+            "text": "Edit Timesheet Successfully!",
+            "type": "success"
+          });
+          setTimeout(function () {
+            window.location.pathname = "/admin/timesheet"
+          }, 1000)
+        }
+      });
+    });
+  });
+
+</script>
+</body>
+
+<!-- end::Body -->
+
+</html>

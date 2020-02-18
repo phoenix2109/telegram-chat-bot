@@ -1,0 +1,453 @@
+          <% include ../layout/head %>
+            <% include ../layout/global-vendors %>
+            <% include ../layout/header %>
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+						
+                <!-- begin:: Content -->
+                <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+    
+                  <!--Begin::App-->
+                  <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+    
+                    <!--Begin:: App Aside-->
+                    <div class="kt-grid__item kt-app__toggle kt-app__aside" id="kt_user_profile_aside">
+    
+                      <!--begin:: Widgets/Applications/User/Profile1-->
+                      <div class="kt-portlet kt-portlet--height-fluid-">
+                        <div class="kt-portlet__head  kt-portlet__head--noborder">
+                          <div class="kt-portlet__head-label">
+                            <h3 class="kt-portlet__head-title">Todo-ist</h3>
+                          </div>
+                          <div class="kt-portlet__head-toolbar">
+                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#todo-modal">Add New</button>
+                          </div>
+                        </div>
+                        <div class="kt-portlet__body kt-portlet__body--fit-y">
+    
+                          <!--begin::Widget -->
+                          <div class="kt-widget kt-widget__nav">
+                            <div class="kt-widget__body">
+                              <ul class="kt-nav">
+                                <li class="kt-nav__section kt-nav__section--first">
+                                  <span class="kt-nav__section-text">Filters</span>
+                                </li>
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link">
+                                    <i class="kt-nav__link-icon flaticon2-information"></i>
+                                    <span class="kt-nav__link-text">Priority</span>
+                                  </a>
+                                </li>
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link">
+                                    <i class="kt-nav__link-icon flaticon2-calendar"></i>
+                                    <span class="kt-nav__link-text">Today</span>
+                                  </a>
+                                </li>
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link">
+                                    <i class="kt-nav__link-icon flaticon2-calendar-1"></i>
+                                    <span class="kt-nav__link-text">Week</span>
+                                  </a>
+                                </li>
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link">
+                                    <i class="kt-nav__link-icon flaticon2-check-mark"></i>
+                                    <span class="kt-nav__link-text">Done</span>
+                                  </a>
+                                </li>
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link">
+                                    <i class="kt-nav__link-icon flaticon-delete-1"></i>
+                                    <span class="kt-nav__link-text">Deleted</span>
+                                  </a>
+                                </li>
+                                <li class="kt-nav__section">
+                                  <span class="kt-nav__section-text">Tags</span>
+                                </li>
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link">
+                                    <i class="kt-nav__link-icon flaticon2-pie-chart-1"></i>
+                                    <span class="kt-nav__link-text">Activity</span>
+                                  </a>
+                                </li>
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link">
+                                    <i class="kt-nav__link-icon flaticon2-layers"></i>
+                                    <span class="kt-nav__link-text">Order</span>
+                                  </a>
+                                </li>
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link">
+                                    <i class="kt-nav__link-icon flaticon2-poll-symbol"></i>
+                                    <span class="kt-nav__link-text">Logs</span>
+                                  </a>
+                                </li>
+                                <li class="kt-nav__section">
+                                  <span class="kt-nav__section-text">Label</span>
+                                </li>
+                                <% for(x in data.listLabel) {%>
+                                <li class="kt-nav__item">
+                                  <a href="#" class="kt-nav__link">
+                                    <i class="kt-nav__link-icon flaticon-add-label-button kt-font-<%=data.listLabel[x].labelType == 'urgent' ? 'danger' : data.listLabel[x].labelType%>"></i>
+                                    <span class="kt-nav__link-text"><%=data.listLabel[x].labelType[0].toUpperCase() + data.listLabel[x].labelType.substring(1)%></span>
+                                  </a>
+                                </li>
+                                <% } %>
+                              </ul>
+                            </div>
+                          </div>
+    
+                          <!--end::Widget -->
+                        </div>
+                      </div>
+    
+                      <!--end:: Widgets/Applications/User/Profile1-->
+                    </div>
+    
+                    <!--End:: App Aside-->
+
+                    <!--Begin:: App Content-->
+                    <div class="kt-grid__item kt-grid__item--fluid kt-app__content">
+                      <div class="row">
+                        <div class="col-xl-12">
+
+                          <!--begin:: Widgets/Order Statistics-->
+                          <div class="kt-portlet kt-portlet--height-fluid">
+                            <div class="kt-portlet__head">
+                              <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                  All Tasks
+                                </h3>
+                              </div>
+                              <div class="kt-portlet__head-toolbar">
+                                <a href="#" class="btn btn-label-brand btn-bold btn-sm dropdown-toggle" data-toggle="dropdown">
+                                  Export
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right">
+
+                                  <!--begin::Nav-->
+                                  <ul class="kt-nav">
+                                    <li class="kt-nav__head">
+                                      Export Options
+                                      <i class="flaticon2-information" data-toggle="kt-tooltip" data-placement="right"
+                                        title="Click to learn more..."></i>
+                                    </li>
+                                    <li class="kt-nav__separator"></li>
+                                    <li class="kt-nav__item">
+                                      <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon flaticon2-drop"></i>
+                                        <span class="kt-nav__link-text">Activity</span>
+                                      </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                      <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon flaticon2-calendar-8"></i>
+                                        <span class="kt-nav__link-text">FAQ</span>
+                                      </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                      <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon flaticon2-link"></i>
+                                        <span class="kt-nav__link-text">Settings</span>
+                                      </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                      <a href="#" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon flaticon2-new-email"></i>
+                                        <span class="kt-nav__link-text">Support</span>
+                                        <span class="kt-nav__link-badge">
+                                          <span class="kt-badge kt-badge--success">5</span>
+                                        </span>
+                                      </a>
+                                    </li>
+                                    <li class="kt-nav__separator"></li>
+                                    <li class="kt-nav__foot">
+                                      <a class="btn btn-label-danger btn-bold btn-sm" href="#">Upgrade plan</a>
+                                      <a class="btn btn-clean btn-bold btn-sm" href="#" data-toggle="kt-tooltip" data-placement="right"
+                                        title="Click to learn more...">Learn more</a>
+                                    </li>
+                                  </ul>
+
+                                  <!--end::Nav-->
+                                </div>
+                              </div>
+                            </div>
+                            <div class="kt-portlet__body kt-portlet__body--fluid">
+                              <div class="kt-widget2 kt-widget2--task">
+                                <% for (x in data.listTodo) {%>
+                                <div class="kt-widget2__item kt-widget2__item--<%=data.listTodo[x].labelType == 'urgent' ? 'danger' : data.listTodo[x].labelType%>">
+                                  <div class="kt-widget2__checkbox">
+                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--single">
+                                      <input type="checkbox">
+                                      <span></span>
+                                    </label>
+                                  </div>
+                                  <div class="kt-widget2__info">	
+                                    <div class="kt-widget2__title">
+                                      <textarea class="form-control" name="autosize-area" spellcheck="false" rows="1"><%=data.listTodo[x].todoTask%></textarea>
+                                    </div>
+                                    <div class="kt-widget2__username">By <%=data.listTodo[x].memberName%></div>			 	 
+                                  </div>
+                                  <div class="kt-widget2__actions">
+                                    <div class="widget__datepicker">
+                                      <div class="input-group-append">
+                                        <input type="text" class="todo-datepicker form-control" name="todo-datepicker-<%=data.listTodo[x].todoId%>" readonly/>
+                                        <span class="input-group-text">
+                                          <i class="la la-calendar-plus-o"></i>
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div class="widget__label">
+                                      <i class="kt-nav__link-icon flaticon-add-label-button kt-font-<%=data.listTodo[x].labelType == 'urgent' ? 'danger' : data.listTodo[x].labelType%>"></i>
+                                    </div>
+                                    <select class="form-control kt-select2 assignMember" name="assignMember-<%=data.listTodo[x].todoId%>">
+                                      <option value="0">unassigned.png,Unassigned</option>
+                                      <% for (x in data.memberProfile) { %>
+                                      <option value="<%=data.memberProfile[x].memberId%>"><%=data.memberProfile[x].memberAvatar%>,<%=data.memberProfile[x].memberName%></option>
+                                      <% } %>
+                                    </select>
+                                    <% include ./todo-actions %>
+                                  </div>
+                                </div>
+                                <% } %>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!--end:: Widgets/Order Statistics-->
+                        </div>
+                      </div>
+                    </div>
+
+                  <!--End:: App Content-->
+                  </div>
+
+                <!--End::App-->
+                </div>
+
+              <!-- end:: Content -->
+              </div>
+            <% include ../layout/footer %>
+          <% include ../layout/footer-script %>
+          <!--begin::Page Scripts(used by this page) -->
+          <!--begin::Modal-->
+          <div class="modal fade" id="todo-modal" role="dialog" aria-labelledby="todoModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="todoModalLabel">New Task</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <form>
+                              <div class="form-group">
+                                  <textarea class="form-control" name="todoTask" placeholder="Enter New Task Here"></textarea>
+                              </div>
+                              <div class="form-group">
+                                <select class="form-control kt-select2 assignMember" name="modalAssignMember">
+                                  <option value="0">unassigned.png,Unassigned</option>
+                                  <% for (x in data.memberProfile) { %>
+                                  <option value="<%=data.memberProfile[x].memberId%>"><%=data.memberProfile[x].memberAvatar%>,<%=data.memberProfile[x].memberName%></option>
+                                  <% } %>
+                                </select>
+                                <select class="form-control kt-select2 assignLabel" name="todoLabel">
+                                  <% for (x in data.listLabel) { %>
+                                  <option value="<%=data.listLabel[x].labelId%>"><%=data.listLabel[x].labelId%></option>
+                                  <% } %>
+                                </select>
+                                <div class="widget__datepicker">
+                                  <div class="input-group-append">
+                                    <input type="text" class="todo-datepicker form-control" name="todo-datepicker" readonly/>
+                                    <span class="input-group-text">
+                                      <i class="la la-calendar-plus-o"></i>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                          </form>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <button type="button" class="btn btn-primary">Add</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!--end::Modal-->
+          <script>
+            function formatMemberState (state) {
+              if (!state.id) {
+                return state.text;
+              }
+              var stateAvatar = state.text.split`,`[0];
+              var stateName = state.text.split`,`[1];
+              
+
+              var stateNo = stateName[0].charCodeAt() % 7;
+              var states = [
+                'success',
+                'brand',
+                'danger',
+                'success',
+                'warning',
+                'primary',
+                'info'
+              ];
+              var rowName = '<span class="kt-user-card-v2__name">' + stateName + '</span>';
+              var rowAvatar;
+              if(stateAvatar == "" || stateAvatar == undefined || stateAvatar == null){
+                rowAvatar = '<div class="kt-badge kt-badge--xl kt-badge--' + states[stateNo] + '">' + stateName[0] + '</div>'
+              }else{
+                rowAvatar = '<img src="/static/images/avatar/'+ stateAvatar +'" alt="avatar">'
+              }
+              var $state = $(
+                      '<div class="kt-user-card-v2">\
+                        <div class="kt-user-card-v2__pic">\
+                          '+rowAvatar+'\
+                        </div>\
+                        <div class="kt-user-card-v2__details">\
+                          '+rowName+'\
+                        </div>\
+                      </div>'
+                    )
+              return $state;
+            };
+
+            var assignMember = {
+              init: function() {
+                $(".kt-select2.assignMember").select2({
+                  placeholder: "Asign a member",
+                  templateResult: formatMemberState,
+                  templateSelection: formatMemberState
+                })
+              }
+            };
+
+            function formatLabelState (state) {
+              if (!state.id) {
+                return state.text;
+              }
+              var stateId = parseInt(state.text);
+
+              var states = [
+                'none',
+                'danger',
+                'warning',
+                'primary',
+                'success'
+              ];
+              var statesName = [
+                'None',
+                'Urgent',
+                'Warning',
+                'Primary',
+                'Success'
+              ]
+              var $state = $(
+                      '<div class="select2-label">\
+                          <i class="select2-label-icon flaticon-add-label-button kt-font-'+states[stateId]+'"></i>\
+                          <span class="select2-label-text">'+statesName[stateId]+'</span>\
+                      </div>'
+                    )
+              return $state;
+            };
+
+            var assignLabel = {
+              init: function() {
+                $(".kt-select2.assignLabel").select2({
+                  placeholder: "Label",
+                  templateResult: formatLabelState,
+                  templateSelection: formatLabelState
+                })
+              }
+            };
+
+            var renderDatePicker = function () {
+
+              var arrows;
+              if (KTUtil.isRTL()) {
+                arrows = {
+                  leftArrow: '<i class="la la-angle-right"></i>',
+                  rightArrow: '<i class="la la-angle-left"></i>'
+                }
+              } else {
+                arrows = {
+                  leftArrow: '<i class="la la-angle-left"></i>',
+                  rightArrow: '<i class="la la-angle-right"></i>'
+                }
+              }
+
+              // Private functions
+              var render = function () {
+                // minimum setup
+                
+                $('.todo-datepicker').datepicker({
+                  rtl: KTUtil.isRTL(),
+                  todayHighlight: true,
+                  orientation: "bottom left",
+                  templates: arrows,
+                  startDate: "0d",
+                  todayBtn: true,
+                  todayHighlight: true,
+                  clearBtn: true,
+                  autoClose: true
+                });
+              }
+
+              return {
+                // public functions
+                init: function () {
+                  render();
+                }
+              };
+            }();
+
+            jQuery(document).ready(function(){
+              var $ = jQuery;
+
+              assignMember.init();
+              assignLabel.init();
+
+              autosize($('[name="autosize-area"]'));
+              autosize.update($('[name="autosize-area"]'));
+
+              $('.kt-checkbox input').on('change', function(){
+                var _this = $(this);
+                if(_this.prop('checked') == true){
+                  _this.parents('.kt-widget2__item').addClass('todo-task--completed');
+                }else{
+                  _this.parents('.kt-widget2__item').removeClass('todo-task--completed');
+                }
+              })
+
+              $('.todo-datepicker').on('change', function(){
+                var _val = $(this).val();
+                var _parent = $(this).parents('.widget__datepicker');
+                if(_val == "" || _val == undefined || _val == null){
+                  _parent.addClass('datepicker--empty')
+                }else{
+                  _parent.removeClass('datepicker--empty')
+                }
+              })
+              $('.todo-datepicker').trigger('change');
+
+              $('.datepicker-nodate').on('click', function(){
+
+              })
+            })
+
+            jQuery(window).on('load', function(){
+              var $ = jQuery;
+              renderDatePicker.init();
+              <%for (x in data.listTodo) {%>
+                $('[name="assignMember-<%=data.listTodo[x].todoId%>"]').val("<%=data.listTodo[x].assignId == null ? '0' : data.listTodo[x].assignId%>").trigger('change');
+              <% } %>
+            })
+          </script>
+<!--end::Page Scripts -->
+</body>
+
+<!-- end::Body -->
+
+</html>

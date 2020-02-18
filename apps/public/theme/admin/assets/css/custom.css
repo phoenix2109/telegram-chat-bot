@@ -1,0 +1,460 @@
+body, html {
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+pre {
+  display: block;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+  white-space: pre-line;
+  margin: 0;
+}
+
+body.isloading>div:not(.loading-indicator) {
+  opacity: 0;
+  transition: ease-in-out 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  -ms-transition: ease-in-out 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  -moz-transition: ease-in-out 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-transition: ease-in-out 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+body>div:not(.loading-indicator) {
+  opacity: 1;
+  transition: ease-in-out 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  -ms-transition: ease-in-out 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  -moz-transition: ease-in-out 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-transition: ease-in-out 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+body.isloading .loading-indicator {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+body.isloading .loading-indicator .fa-spinner {
+  display: inline-block;
+  -webkit-animation: spin 2.5s infinite linear;
+  animation: spin 2.5s infinite linear;
+}
+
+.loading-indicator {
+  font-size: 22px;
+  line-height: 50px;
+  position: absolute;
+  z-index: 10000;
+  top: 25px;
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  -webkit-transform: translateX(90px);
+  transform: translateX(90px);
+  text-align: center;
+  color: #fff;
+  border-radius: 3px;
+  background: #000;
+  background: rgba(0, 0, 0, .7);
+  transition: width .2s ease-out, height .2s ease-out, padding .2s ease-out, border-color .2s ease-out, filter .2s ease-out, transform .2s ease-out, opacity .2s ease-out, background .2s ease-out, background-color .2s ease-out, -webkit-filter .2s ease-out, -webkit-transform .2s ease-out;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg)
+  }
+  to {
+    -webkit-transform: rotate(360deg)
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg)
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg)
+  }
+}
+
+.kt-aside__brand-logo svg {
+  width: auto;
+  max-height: 40px;
+  max-width: 125px;
+  display: block;
+}
+
+.kt-header-mobile__logo img {
+  max-height: 40px;
+}
+
+.kt-login__logo img {
+  max-height: 120px;
+}
+
+.kt-aside__brand-logo img {
+  max-height: 40px;
+}
+
+.kt-aside__brand-logo svg path, .kt-aside__brand-logo svg polygon, .kt-aside__brand-logo svg g {
+  fill: #fff !important;
+}
+
+@media (max-width: 1399px) and (min-width: 1025px) {
+  .kt-app .kt-app__aside {
+    width: 312.5px;
+  }
+}
+
+/** Data Table **/
+
+.kt-datatable__cell img {
+  height: auto;
+  width: 100%;
+}
+
+.kt-subheader .kt-subheader__main .btn:not(.dropdown-toggle-split) {
+  margin-top: 0;
+  margin-bottom: 1px;
+}
+
+.dropzone .dz-preview .dz-progress {
+  margin-top: 20px;
+}
+
+/** Edit Product **/
+
+.kt-image__wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.kt-image__wrapper img {
+  max-height: 120px;
+}
+
+.dropzone .dz-preview .dz-image img {
+  width: auto;
+  height: 100%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.kt-avatar .kt-avatar__holder {
+  background-size: 100% auto;
+  overflow: hidden;
+}
+
+.kt-avatar .kt-avatar__holder img {
+  height: 100%;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translateX(-50%, -50%);
+}
+
+.kt-widget.kt-widget--user-profile-1 .kt-widget__head .kt-widget__media img {
+  border-radius: 0;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translateX(-50%, -50%);
+}
+
+.kt-avatar__holder .kt-badge {
+  width: 100%;
+  height: 100%;
+  font-size: 2.8rem;
+}
+
+.kt-widget__media {
+  height: 90px;
+  overflow: hidden;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+}
+
+#order_lists {
+  padding: 0;
+}
+
+#order_lists .kt-portlet {
+  -webkit-box-shadow: unset;
+  box-shadow: unset;
+  border-top: 1px solid #ebedf2;
+  border-radius: 0;
+}
+
+[data-field="Customer"] .kt-user-card-v2 .kt-user-card-v2__pic img, [data-field="CreatedBy"] .kt-user-card-v2 .kt-user-card-v2__pic img {
+  width: 40px;
+  height: 40px;
+}
+
+.kt-datatable.kt-datatable--default>.kt-datatable__table>.kt-datatable__body .kt-datatable__row-detail .kt-datatable__detail .kt-datatable__row>.kt-datatable__cell {
+  vertical-align: middle;
+}
+
+[data-field="Product"] .kt-user-card-v2 .kt-user-card-v2__details .kt-user-card-v2__name {
+  text-align: center;
+}
+
+.kt-subheader__main .kt-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.kt-subheader__main .kt-form .kt-form__group.kt-form__group--inline {
+  min-width: 200px;
+  margin-right: 30px;
+}
+
+.kt-subheader .kt-form .btn {
+  display: block;
+  height: auto !important;
+  padding: .65rem 1rem;
+}
+
+.kt-form .kt-form__group.kt-form__group--inline>.kt-form__label {
+  white-space: nowrap;
+}
+
+#select2-productOrder-container .kt-user-card-v2 .kt-user-card-v2__pic img, .select2-results__options .kt-user-card-v2 .kt-user-card-v2__pic img {
+  border-radius: 0;
+  max-width: unset;
+}
+
+.datetimepicker .disabled, .datepicker .disabled {
+  background: #f7f8fa !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+}
+
+.kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__heading .kt-menu__link-icon svg g [fill], .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__link .kt-menu__link-icon svg g [fill] {
+  fill: #5867dd;
+}
+
+.kt-nav .kt-nav__section {
+  padding-left: 0;
+}
+
+.kt-portlet__body.kt-portlet__body--fit-y .kt-widget__nav {
+  margin-top: 0;
+}
+
+.kt-nav .kt-nav__item>.kt-nav__link {
+  padding: .55rem 1rem;
+}
+
+.kt-widget2--task {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.kt-widget2 .kt-widget2__item .kt-widget2__actions {
+  visibility: visible;
+}
+
+.kt-widget2__actions .select2-container {
+  width: auto !important;
+}
+
+.kt-widget2__actions .select2-container--default .select2-selection--single {
+  border: 0 none;
+}
+
+.kt-widget2__actions .select2-selection__arrow {
+  display: none !important;
+}
+
+.select2-dropdown.select2-dropdown--below {
+  min-width: 260px;
+  left: -100px !important;
+}
+
+.select2-selection__rendered .kt-user-card-v2__details {
+  display: none;
+}
+
+.select2-container .kt-user-card-v2 .kt-user-card-v2__details .kt-user-card-v2__name {
+  padding-left: 10px;
+}
+
+.select2-selection__rendered .kt-user-card-v2 .kt-user-card-v2__pic img {
+  border-radius: 0;
+  max-height: 24px;
+  max-width: 24px;
+}
+
+.kt-widget2__actions .select2-container--default .select2-selection--single .select2-selection__rendered {
+  padding: .65rem 1rem;
+}
+
+.kt-widget2 textarea {
+  padding: 0 !important;
+  border: 0 none;
+  color: #6c7293;
+  font-weight: 500;
+}
+
+.kt-widget2 textarea:focus {
+  color: #5d78ff;
+}
+
+.todo-task--completed textarea {
+  text-decoration: line-through;
+}
+
+.kt-widget2 .kt-widget2__item .kt-widget2__info {
+  width: 60%;
+}
+
+.kt-widget2__actions {
+  display: flex;
+  -webkit-display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.widget__label {
+  padding-right: 12px;
+}
+
+.widget__datepicker {
+  display: flex;
+  margin-right: 20px;
+  position: relative;
+}
+
+.widget__datepicker .input-group-text {
+  background: none;
+  border: 0 none;
+  padding: 0;
+  border-radius: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  display: none;
+}
+
+.widget__datepicker .todo-datepicker {
+  max-width: 100px;
+  max-width: 100px;
+  padding: 0;
+  border: 0 none !important;
+  text-align: right;
+  cursor: pointer;
+}
+
+.widget__datepicker.datepicker--empty .input-group-text {
+  display: block;
+}
+
+.datepicker-nodate {
+  display: block !important;
+  cursor: pointer;
+}
+
+.datepicker-nodate .input-group-text {
+  font-size: 1.2rem;
+}
+
+.datepicker-nodate .input-group-text i {
+  font-size: 2rem;
+  padding-right: 10px;
+}
+
+.select2-label {
+  font-size: 16px;
+}
+
+.select2-label-icon {
+  padding-right: 15px;
+}
+
+.select2-selection__rendered .select2-label-text {
+  display: none;
+}
+
+#todo-modal .select2-selection__rendered .select2-label-icon {
+  font-size: 2.1rem;
+}
+
+#todo-modal .select2-selection__rendered .kt-user-card-v2 .kt-user-card-v2__pic img {
+  max-width: 28px;
+  max-height: 28px;
+}
+
+#todo-modal .select2.select2-container {
+  margin-right: 20px;
+}
+
+#todo-modal .select2-selection__arrow {
+  display: none;
+}
+
+#todo-modal .select2-selection--single, #todo-modal .select2-selection--single .select2-selection__rendered {
+  padding: 0 !important;
+  border: 0 none !important;
+}
+
+#todo-modal .widget__datepicker {
+  display: inline-block;
+}
+
+#todo-modal .widget__datepicker .todo-datepicker {
+  text-align: left;
+}
+
+#todo-modal .widget__datepicker .input-group-text {
+  font-size: 2.4rem;
+  left: 0;
+  right: auto;
+}
+
+.kt-widget17 .kt-widget17__stats.kt-widget17__custom {
+  width: 50%;
+  margin-top: 0;
+}
+
+.kt-portlet--transparent {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.kt-widget17 .kt-widget17__stats .kt-widget17__items .kt-widget17__item {
+  text-align: center
+}
+
+/*.kt-datatable.kt-datatable--default>.kt-datatable__table>.kt-datatable__body .kt-datatable__row>.kt-datatable__cell:first-child, .kt-datatable.kt-datatable--default>.kt-datatable__table>.kt-datatable__foot .kt-datatable__row>.kt-datatable__cell:first-child, .kt-datatable.kt-datatable--default>.kt-datatable__table>.kt-datatable__head .kt-datatable__row>.kt-datatable__cell:first-child {
+  padding-left: 10px;
+}*/
+
+.kt-widget.kt-widget--user-profile-1 .kt-badge.kt-badge--rounded {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.kt-badge.kt-badge--rounded {
+  border-radius: 8px;
+}
+
+@media (max-width: 767px) {
+  .kt-login__logo {
+    justify-content: center;
+  }
+  .kt-widget17 .kt-widget17__stats.kt-widget17__custom {
+    width: 90%;
+  }
+}

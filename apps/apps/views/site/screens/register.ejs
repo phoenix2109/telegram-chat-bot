@@ -1,0 +1,431 @@
+<% include ../layout/head %>
+<!--begin::Global Theme Styles(used by all pages) -->
+<% include ../layout/header-scripts %>
+<!--end::Global Theme Styles(used by all pages) -->
+<link href="/static/theme/site/assets/css/style.wizard.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="no-header landing-page is-loading">
+  <!-- begin::Wrapper -->
+  <div id="wrapper">
+    <!-- begin::Loader -->
+    <% include ../plugins/loader %>
+    <!-- end::Loader -->
+    <!-- begin::Navigation -->
+    <% include ../components/landing-navigation %>
+    <!-- end::Navigation -->
+    <!-- begin::Main -->
+    <div id="main">
+      <!-- begin::Container -->
+      <div class="container-fluid">
+        <div class="kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+          <div class="kt-portlet">
+            <div class="kt-portlet__body kt-portlet__body--fit">
+              <div class="kt-grid kt-wizard-v1 kt-wizard-v1--white" id="kt_wizard_v1" data-ktwizard-state="first">
+                <div class="kt-grid__item">
+                  <!--begin: Form Wizard Nav -->
+                  <div class="kt-wizard-v1__nav">
+                    <!--doc: Remove "kt-wizard-v1__nav-items--clickable" class and also set 'clickableSteps: false' in the JS init to disable manually clicking step titles -->
+                    <div class="kt-wizard-v1__nav-items kt-wizard-v1__nav-items--clickable">
+                      <div class="kt-wizard-v1__nav-item" data-ktwizard-type="step" data-ktwizard-state="current">
+                        <div class="kt-wizard-v1__nav-body">
+                          <div class="kt-wizard-v1__nav-icon">
+                            <i class="flaticon-settings"></i>
+                          </div>
+                          <div class="kt-wizard-v1__nav-label">
+                            1. Đăng ký
+                          </div>
+                        </div>
+                        <div><i class="kt-wizard-v1__nav-icon flaticon2-next"></i></div>
+                      </div>
+                      <div class="kt-wizard-v1__nav-item" data-ktwizard-type="step" data-ktwizard-state="pending">
+                        <div class="kt-wizard-v1__nav-body">
+                          <div class="kt-wizard-v1__nav-icon">
+                            <i class="flaticon-coins"></i>
+                          </div>
+                          <div class="kt-wizard-v1__nav-label">
+                            2. Nạp tiền
+                          </div>
+                        </div>
+                        <div><i class="kt-wizard-v1__nav-icon flaticon2-next"></i></div>
+                      </div>
+                      <div class="kt-wizard-v1__nav-item" data-ktwizard-type="step" data-ktwizard-state="pending">
+                        <div class="kt-wizard-v1__nav-body">
+                          <div class="kt-wizard-v1__nav-icon">
+                            <i class="flaticon-refresh"></i>
+                          </div>
+                          <div class="kt-wizard-v1__nav-label">
+                            3. Sao chép
+                          </div>
+                        </div>
+                        <div><i class="kt-wizard-v1__nav-icon flaticon2-next"></i></div>
+                      </div>
+                      <div class="kt-wizard-v1__nav-item" data-ktwizard-type="step" data-ktwizard-state="pending">
+                        <div class="kt-wizard-v1__nav-body">
+                          <div class="kt-wizard-v1__nav-icon">
+                            <i class="flaticon-list"></i>
+                          </div>
+                          <div class="kt-wizard-v1__nav-label">
+                            4. Thông tin của bạn
+                          </div>
+                        </div>
+                        <div><i class="kt-wizard-v1__nav-icon flaticon2-next"></i></div>
+                      </div>
+                      <div class="kt-wizard-v1__nav-item" data-ktwizard-type="step" data-ktwizard-state="pending">
+                        <div class="kt-wizard-v1__nav-body">
+                          <div class="kt-wizard-v1__nav-icon">
+                            <i class="flaticon-statistics"></i>
+                          </div>
+                          <div class="kt-wizard-v1__nav-label">
+                            5. Theo dõi tài khoản
+                          </div>
+                        </div>
+                        <div><i class="kt-wizard-v1__nav-icon flaticon2-next"></i></div>
+                      </div>
+                      <div class="kt-wizard-v1__nav-item" data-ktwizard-type="step" data-ktwizard-state="pending">
+                        <div class="kt-wizard-v1__nav-body">
+                          <div class="kt-wizard-v1__nav-icon">
+                            <i class="flaticon-globe"></i>
+                          </div>
+                          <div class="kt-wizard-v1__nav-label">
+                            6. Review and Submit
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--end: Form Wizard Nav -->
+
+                </div>
+                <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v1__wrapper">
+                  <!--begin: Form Wizard Form -->
+                  <form class="kt-form" id="kt_form" novalidate="novalidate" action="/register" method="post">
+                    <!--begin: Form Wizard Step 1 -->
+                    <div class="kt-wizard-v1__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+                      <div class="kt-heading kt-heading--md">GUP Capital hiện tại đang phục vụ khách hàng trên sàn
+                        LiteForex</div>
+                      <div class="kt-form__section kt-form__section--first">
+                        <div class="kt-wizard-v1__form">
+                          <div>
+                            <p class="paragraph">Để thực hiện sao chép giao dịch, bạn cần có tài khoản giao dịch của sàn
+                              LiteForex
+                              <br>
+                              Đăng ký tài khoản ngay <a href="http://bit.ly/gup-capital" target="_blank">tại đây</a>
+                            </p>
+                          </div>
+                        </div>
+                        <div class="spacer spacer-20"></div>
+                        <div>
+                          <p class="paragraph">Nếu bạn đã có tài khoản hoặc đã hoàn thành đăng ký tài khoản tại sàn
+                            LiteForex, vui lòng điền email hoặc số điện thoại đăng ký tài khoản của bạn.</p>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>Tài khoản LiteForex</label>
+                          <input type="text" class="form-control" name="account" placeholder="" value="">
+                          <span class="form-text text-muted">Email hoặc số điện thoại đăng ký tài khoản của bạn</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!--end: Form Wizard Step 1 -->
+
+                    <!--begin: Form Wizard Step 2 -->
+                    <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+                      <div class="kt-heading kt-heading--md">Để sao chép giao dịch cùng GUP Capital, số dư tài khoản sao
+                        chép của bạn cần có trên $1000</div>
+                      <div class="kt-form__section kt-form__section--first">
+                        <div class="kt-wizard-v1__form">
+                          <div class="kt-heading kt-heading--sm">Hãy nạp tiền vào tài khoản giao dịch LiteForex của bạn
+                          </div>
+                          <div>
+                            <p class="paragraph">Cách thức nạp tiền:
+                              Đầu tiên, chọn phần “tài chính” rồi chọn chuyển khoản ngân hàng.
+                            </p>
+                          </div>
+                          <div><img class="lazyload img-fluid" data-src="/static/theme/site/assets/images/wizard-1.jpg"
+                              alt="Copytrade" /></div>
+                          <div class="spacer spacer-30"></div>
+                          <div>
+                            <p class="paragraph"><br>Tiếp theo, chọn ngân hàng tài khoản nạp tiền của bạn<br></p>
+                          </div>
+                          <div><img class="lazyload img-fluid" data-src="/static/theme/site/assets/images/wizard-2.jpg"
+                              alt="Copytrade" /></div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--end: Form Wizard Step 2 -->
+
+                    <!--begin: Form Wizard Step 3 -->
+                    <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+                      <div class="kt-heading kt-heading--md">Sau khi đã nạp tiền vào tài khoản, bạn có thể bắt đầu thực
+                        hiện <a href="http://bit.ly/saochepgiaodich" target="_blank">sao chép giao dịch</a></div>
+                      <div class="kt-form__section kt-form__section--first">
+                        <div class="kt-wizard-v1__form">
+                          <div>
+                            <p class="paragraph text--bold text-danger">
+                              Lưu ý khi sao chép giao dịch: Bỏ chọn phần "sao chép giao dịch đã mở"
+                              <br>
+                            </p>
+                          </div>
+                          <div class="spacer spacer-30"></div>
+                          <div><img class="lazyload img-fluid" data-src="/static/theme/site/assets/images/wizard-3.jpg"
+                              alt="Copytrade" /></div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--end: Form Wizard Step 3 -->
+
+                    <!--begin: Form Wizard Step 4 -->
+                    <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+                      <div class="kt-heading kt-heading--md">Sau khi đã thực hiện sao chép, hãy để lại thông tin để GUP
+                        Capital có thể hỗ trợ bạn trong quá trình xác minh tài khoản và cập nhật thông tin hàng tháng
+                      </div>
+                      <div class="kt-form__section kt-form__section--first">
+                        <div class="kt-wizard-v1__form">
+                          <div class="form-group col-md-6">
+                            <label>Họ và tên</label>
+                            <input type="text" class="form-control" name="name" placeholder="Tên của bạn" value="">
+                            <span class="form-text text-muted">Xin vui lòng điền tên của bạn</span>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label>Số điện thoại</label>
+                            <input type="text" class="form-control" name="phone" placeholder="Số điện thoại" value="">
+                            <span class="form-text text-muted">Xin vui lòng điền số điện thoại</span>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label>Email</label>
+                            <input type="text" class="form-control" name="email" placeholder="Email của bạn" value="">
+                            <span class="form-text text-muted">Xin vui lòng điền email của bạn</span>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label>Deposit</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend"><span class="input-group-text"><i class="la la-dollar"></i></span>
+                              </div>
+                              <input name="deposit" type="text" class="form-control" aria-describedby="basic-addon1"
+                                placeholder="Mức tiền nạp">
+                            </div>
+                            <span class="form-text text-muted">Xin vui lòng số tiền bạn nạp vào tài khoản</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--end: Form Wizard Step 4-->
+
+                    <!--begin: Form Wizard Step 5 -->
+                    <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+                      <div class="kt-heading kt-heading--md">Sau khi hoàn tất sao chép, hãy tải phần mềm Metatrader4 để
+                        theo dõi và quản lí tài khoản của bạn</div>
+                      <div class="kt-form__section kt-form__section--first">
+                        <div class="kt-heading kt-heading--md">Tải Metatrader 4 <a
+                            href="https://www.liteforex.com/downloads/mt4">tại đây</a></div>
+                        <div class="kt-heading kt-heading--md">Hướng dẫn thay đổi mật khẩu tài khoản metatrader4</div>
+                        <div>
+                          <p class="paragraph">Vào phần Metatrader, chọn "cài đặt"</p>
+                        </div>
+                        <div class="spacer spacer-30"></div>
+                        <div>
+                          <img class="lazyload img-fluid" data-src="/static/theme/site/assets/images/wizard-4.jpg"
+                            alt="Copytrade" />
+                        </div>
+                        <div class="spacer spacer-30"></div>
+                        <div>
+                          <p class="paragraph">Thay đổi mật khẩu tài khoản giao dịch của bạn để có thể tự động theo dõi
+                            trên phần mềm MT4 trên máy tính và điện thoại</p>
+                        </div>
+                        <div class="spacer spacer-30"></div>
+                        <div>
+                          <img class="lazyload img-fluid" data-src="/static/theme/site/assets/images/wizard-5.jpg"
+                            alt="Copytrade" />
+                        </div>
+                      </div>
+                    </div>
+                    <!--end: Form Wizard Step 5-->
+
+                    <!--begin: Form Wizard Step 6-->
+                    <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+                      <div class="kt-heading kt-heading--md">Review and Submit</div>
+                      <div class="kt-form__section kt-form__section--first">
+                        <div class="kt-wizard-v1__review">
+                          <div class="kt-wizard-v1__review-item">
+                            <div class="kt-wizard-v1__review-title">
+                              Email hoặc số điện thoại đăng ký LiteForex của bạn
+                            </div>
+                            <div id="register-account" class="kt-wizard-v1__review-content"></div>
+                          </div>
+                          <div class="kt-wizard-v1__review-item">
+                            <div class="kt-wizard-v1__review-title">
+                              Tên của bạn
+                            </div>
+                            <div id="register-name" class="kt-wizard-v1__review-content"></div>
+                          </div>
+                          <div class="kt-wizard-v1__review-item">
+                            <div class="kt-wizard-v1__review-title">
+                              Số điện thoại
+                            </div>
+                            <div id="register-phone" class="kt-wizard-v1__review-content"></div>
+                          </div>
+                          <div class="kt-wizard-v1__review-item">
+                            <div class="kt-wizard-v1__review-title">
+                              Email
+                            </div>
+                            <div id="register-email" class="kt-wizard-v1__review-content"></div>
+                          </div>
+                          <div class="kt-wizard-v1__review-item">
+                            <div class="kt-wizard-v1__review-title">
+                              Deposit
+                            </div>
+                            <div id="register-deposit" class="kt-wizard-v1__review-content"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--end: Form Wizard Step 6 -->
+
+                    <!--begin: Form Actions -->
+                    <div class="kt-form__actions">
+                      <button class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+                        data-ktwizard-type="action-prev">
+                        Quay lại
+                      </button>
+                      <button class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+                        data-ktwizard-type="action-submit">
+                        Gửi
+                      </button>
+                      <button class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+                        data-ktwizard-type="action-next">
+                        Bước tiếp theo
+                      </button>
+                    </div>
+                    <!--end: Form Actions -->
+                  </form>
+                  <!--end: Form Wizard Form-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end::Container -->
+        </div>
+      </div>
+    </div>
+    <!-- end::Main -->
+    <!-- begin::Footer -->
+    <% include ../layout/footer %>
+    <!-- end::Footer -->
+  </div>
+  <!-- end::Wrapper -->
+
+  <!-- begin::Global Config(global config for global JS sciprts) -->
+  <% include ../layout/footer-scripts %>
+  <!-- end::Global Config -->
+  <!--begin:: Global Mandatory Vendors -->
+  <!-- <script src="/static/theme/site/assets/js/scripts.wizard.js"></script> -->
+  <script>
+    'use strict'
+    jQuery.validator.addMethod("matchEmail", function(value, element) {
+      return this.optional(element) || /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm.test(value);
+    }, "Xin hãy điền chính xác địa chỉ email của bạn");
+    jQuery.validator.addMethod("matchPhone", function(value, element) {
+      return this.optional(element) || /^(?:\d{9,}|(\+)(\d{9,}))$/.test(value);
+    }, "Xin hãy điền chính xác số điện thoại của bạn");
+    jQuery.validator.addMethod("matchAccount", function(value, element) {
+      return this.optional(element) || /^(?:\d{9,}|(\+)(\d{9,})|\w+@\w+\.\w{2,3})$/.test(value) || /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm.test(value);
+    }, "Xin hãy điền chính xác tài khoản của bạn");
+    var KTWizard1 = (function () {
+      var e, r, t
+      return {
+        init: function () {
+          var i
+          KTUtil.get('kt_wizard_v1'),
+            e = $('#kt_form'),
+            (t = new KTWizard('kt_wizard_v1', {
+              startStep: 1,
+              clickableSteps: !0
+            })).on('beforeNext', function (e) {
+              !0 !== r.form() && e.stop()
+            }),
+            t.on('beforePrev', function (e) {
+              !0 !== r.form() && e.stop()
+            }),
+            t.on('change', function (e) {
+              setTimeout(function () {
+                KTUtil.scrollTop(100)
+              }, 500)
+            }),
+            r = e.validate({
+              ignore: ':hidden',
+              rules: {
+                account: {
+                  required: true,
+                  matchAccount: true
+                },
+                name: {
+                  required: true
+                },
+                phone: {
+                  required: true,
+                  matchPhone: true
+                },
+                email: {
+                  required: true,
+                  matchEmail: true
+                }
+              },
+              invalidHandler: function (e, r) {
+                KTUtil.scrollTop(),
+                  swal.fire({
+                    title: '',
+                    text: 'Có lỗi xảy ra trong quá trình đăng ký. Xin hãy kiểm tra lại thông tin đăng ký của bạn',
+                    type: 'error',
+                    confirmButtonClass: 'btn btn-secondary'
+                  })
+              },
+              submitHandler: function (e) { }
+            }),
+            (i = e.find('[data-ktwizard-type="action-submit"]')).on('click', function (t) {
+              t.preventDefault(),
+              r.form() && (KTApp.progress(i),
+                e.ajaxSubmit({
+                  success: function () {
+                    KTApp.unprogress(i),
+                      swal.fire({
+                        title: '',
+                        text: 'Cảm ơn. Chúng tôi đã nhận được thông tin đăng ký của bạn',
+                        type: 'success',
+                        confirmButtonClass: 'btn btn-secondary'
+                      }),
+                      setTimeout(function () {
+                        window.location.pathname = "/"
+                      }, 1500)
+                  }
+                })
+              )
+            })
+        }
+      }
+    }())
+    jQuery(document).ready(function () {
+      KTWizard1.init()
+      $('input[name="account"]').on('change', function() {
+        $('#register-account').text($(this).val())
+      })
+      $('input[name="name"]').on('change', function() {
+        $('#register-name').text($(this).val())
+      })
+      $('input[name="email"]').on('change', function() {
+        $('#register-email').text($(this).val())
+      })
+      $('input[name="phone"]').on('change', function() {
+        $('#register-phone').text($(this).val())
+      })
+      $('input[name="deposit"]').on('change', function() {
+        $('#register-deposit').text(`$${$(this).val() || 0}` || `$0`)
+      })
+      $('input[name="deposit"]').trigger('change')
+    })
+
+  </script>
+  <!-- begin::Script -->
+  <!-- end::Script -->
+</body>
+
+</html>
